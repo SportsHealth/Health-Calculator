@@ -17,12 +17,8 @@
 <body>
     <!-- !Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky sticky-top" id="navbar">
-        <a class="navbar-brand" href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Health
-            Calculator(테스트)</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="#"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> PAPS 건강체력검사(보조도구)
+        </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -30,8 +26,6 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <span class="navbar-text text-center text-muted font-weight-bolder"><i class="fa fa-copy text-dark"></i>
-                건강상태 계산기</span>
         </div>
     </nav>
     <div class="sticky-bottom d-none">
@@ -41,13 +35,6 @@
                 <span class="text-muted">Toggleable via the navbar brand.</span>
             </div>
         </div>
-        <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
     </div>
 
     <!-- !Scroll top button -->
@@ -57,8 +44,7 @@
         <div class="container d-flex justify-content-center align-content-center flex-column flex-wrap">
             <div class="alert alert-warning my-3 alert-dismissible fade show" id="introAlert" role="alert">
                 <span class="font-weight-bold">
-                    아래의 화면에 당신의 신체정보를 작성해주시면 <b>BMR (Body Metabolic Rate)</b> 와 <b>BMI
-                        (Body Mass Index)</b> 를 계산해 드릴께요!
+                    아래의 화면에 당신의 건강체력검사 결과를 작성해주시면 <b>PAPS 등급</b>을 계산해 드릴께요!
                 </span>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -75,18 +61,54 @@
                         <hr>
                     </h3>
                     <!-- Toggle switch -->
-                    <!-- !Input for Age -->
+                    <!-- !Input for Origin Data -->
                     <div id="ageBox">
-                        <h5 class="card-title">나이(만나이) : </h5>
+                        <h5 class="card-title">초등학교, 학년, 반, 번호를 입력하세요. </h5>
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="EName">초등학교</label>
+                            </div>
+                            <input type="text" class="form-control" placeholder=" 초등학교 이름을 입력하세요. " id="inputEName"
+                                aria-label="EName" required>
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="SchollYear">학년</label>
+                            </div>
+                            <select class="custom-select" id="inputSchollYear" onchange="changeSchollYear()" required>
+                                <option value="0">학년을 선택하세요.</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="SchollClass">반</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 반을 입력하세요. " id="inputSchollClass"
+                                min="1" max="20" aria-label="SchollClass" required>
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="SchollClassNum">번호</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 번호를 입력하세요. "
+                                id="inputSchollClassNum" min="1" max="100" aria-label="SchollClassNum" required>
+                        </div>
+                    </div>
+
+                    <div id="ageBox">
+                        <h5 class="card-title">나이 : </h5>
                         <div class="input-group mb-3 my-3">
                             <div class="input-group-append valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('inputAge').value--"><i
                                         class="fa fa-minus"></i></span>
                             </div>
-                            <input type="number" class="form-control"
-                                placeholder=" 3세에서 80세 사이로 당신의 나이를 입력하세요." id="inputAge" min="3" max="80"
-                                aria-label="Age" required>
+                            <input type="number" class="form-control" placeholder=" 8세에서 13세 사이로 당신의 나이를 입력하세요."
+                                id="inputAge" min="8" max="13" aria-label="Age" required>
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('inputAge').value++"><i
@@ -109,28 +131,9 @@
                                     class="fa fa-female text-success"></i> 여자</label>
                         </div>
                     </div>
-                    <!-- !Input for Weight -->
-                    <div id="ageBox">
-                        <h5 class="card-title">몸무게 (KG) : </h5>
-                        <div class="input-group mb-3 my-3">
-                            <div class="input-group-append valChanger">
-                                <span class="input-group-text" style="cursor: pointer;"
-                                    onclick="document.getElementById('inputWeight').value--"><i
-                                        class="fa fa-minus"></i></span>
-                            </div>
-                            <input type="number" class="form-control" placeholder="당신의 몸무게를 입력하세요." id="inputWeight" min="5"
-                                max="200" aria-label="weight" required>
-                            <div class="input-group-prepend valChanger">
-                                <span class="input-group-text" style="cursor: pointer;"
-                                    onclick="document.getElementById('inputWeight').value++"><i
-                                        class="fa fa-plus"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- !Input for Height -->
                     <div class="my-3 mx-auto d-block" id="HeightBox">
-                        <h5 class="d-inline-block">키 : &nbsp;&nbsp;</h5>
+                        <h5 class="d-inline-block">신장 (cm) : &nbsp;&nbsp;</h5>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="heightType" id="centimeter" checked
                                 value="centimeter">
@@ -138,7 +141,6 @@
                                 aria-checked="true"><i class="fa fa-check-circle text-danger"></i> Centimeter</label>
                         </div>
                     </div>
-
                     <!-- TODO: Centimeter Box -->
                     <div id="centimeterBox">
                         <div class="input-group mb-3 my-3">
@@ -147,8 +149,8 @@
                                     onclick="document.getElementById('inputCentimeter').value--"><i
                                         class="fa fa-minus"></i></span>
                             </div>
-                            <input type="number" class="form-control" placeholder="당신의 키를 입력하세요."
-                                id="inputCentimeter" min="1" aria-label="Amount (to the nearest dollar)">
+                            <input type="number" class="form-control" placeholder="당신의 키를 입력하세요." id="inputCentimeter"
+                                min="1" aria-label="Amount (to the nearest dollar)">
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('inputCentimeter').value++"><i
@@ -156,27 +158,381 @@
                             </div>
                         </div>
                     </div>
-                    <!-- !State of health input -->
-                    <div class="mb-3">
-                        <h5>운동 상태값</h5>
-                        <div class="input-group is-valid">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="physicalState">Options</label>
+                    <!-- !Input for Weight -->
+                    <div id="ageBox">
+                        <h5 class="card-title">몸무게 (kg) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputWeight').value--"><i
+                                        class="fa fa-minus"></i></span>
                             </div>
-                            <select class="custom-select" id="physicalState" required>
-                                <option value="none">선택하세요...</option>
-                                <option value="low">Low - no exercise : 집돌이, 집순이
-                                </option>
-                                <option value="normal">Normal - light exercise : 일반인</option>
-                                <option value="medium">Medium - moderate exercise : 약속많은 인싸 </option>
-                                <option value="high">High - very active : 연초의 헬린이 </option>
-                                <option value="veryHigh">Very High - extra active : 태릉 가즈아 </option>
-                            </select>
-                        </div>
-                        <div class="valid-feedback">
-                            당신의 운동량에 대해 선택하세요.
+                            <input type="number" class="form-control" placeholder="당신의 몸무게를 입력하세요." id="inputWeight"
+                                min="5" max="200" aria-label="weight" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputWeight').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- !Input for Long Round RUN -->
+                    <div id="ageBox">
+                        <h5 class="card-title">왕복오래달리기 (횟수) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputRoundRun').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="오래달리기 횟수를 입력하세요." id="inputRoundRun"
+                                min="5" max="200" aria-label="RoundRun" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputRoundRun').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4-6 학년의 경우 추가 항목 신설 -->
+                    <div id="enduranceSection" style="display: none;">
+                        <h5 class="d-block">오래달리기걷기 (초) : &nbsp;&nbsp;</h5>
+                        <div class="input-group mb-3 my-3" id="longrun">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputlongrun').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="오래달리기걷기 시간을 입력하세요." id="inputlongrun"
+                                defaultValue="-1" min="-1" max="200" aria-label="longrun" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputlongrun').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3 my-3" id="step"></div>
+                        <h5 class="d-block">스탭검사 : &nbsp;&nbsp;</h5>
+                        <div class="input-group mb-3 my-3" id="step1">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep1').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="스탭검사 횟수(60초-90초)를 입력하세요."
+                                id="inputstep1" defaultValue="-1" min="-1" max="200" aria-label="step" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep1').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3 my-3" id="step2">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep2').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="스탭검사 횟수(120초-210초)를 입력하세요."
+                                id="inputstep2" defaultValue="-1" min="-1" max="200" aria-label="step" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep2').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3 my-3" id="step3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep3').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="스탭검사 횟수(180초-270초)를 입력하세요."
+                                id="inputstep3" defaultValue="-1" min="-1" max="200" aria-label="step" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputstep3').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- !State of flexibility input -->
+                    <div class="mb-3">
+                        <h5>종합유연성</h5>
+
+                        <h6><b>오른쪽</b></h6>
+
+                        <!-- 4-6 학년의 경우 추가 항목 신설 -->
+                        <div id="RbendingSection" style="display: none;">
+                            <h6 class="d-inline-block">팔굽혀펴기 : &nbsp;&nbsp;</h6>
+                            <div class="input-group mb-3 my-3" id="Rbending">
+                                <div class="input-group-append valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputRbending').value--"><i
+                                            class="fa fa-minus"></i></span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="팔굽혀펴기 횟수를 입력하세요."
+                                    id="inputRbending" defaultValue="-1" min="-1" max="200" aria-label="Rbending"
+                                    required>
+                                <div class="input-group-prepend valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputRbending').value++"><i
+                                            class="fa fa-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="RShoulder">
+                            <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_Success"
+                                    checked value="Shoulder_Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_false"
+                                    value="Shoulder_false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="Rbody">
+                            <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Rbody" id="body_Success" checked
+                                    value="body_Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Rbody" id="body_false"
+                                    value="body_false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="RSide">
+                            <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RSide" id="Side_Success" checked
+                                    value="Side_Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RSide" id="Side_false"
+                                    value="Side_false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="RLower">
+                            <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RLower" id="Lower_Success" checked
+                                    value="Lower_Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="RLower" id="Lower_false"
+                                    value="Lower_false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <h6><b>왼쪽</b></h6>
+                        <!-- 4-6 학년의 경우 추가 항목 신설 -->
+                        <div id="LbendingSection" style="display: none;">
+                            <h6 class="d-inline-block">앉아 윗몸 앞으로 굽히기 (cm) : &nbsp;&nbsp;</h6>
+                            <div class="input-group mb-3 my-3" id="L_bending">
+                                <div class="input-group-append valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputLbending').value--"><i
+                                            class="fa fa-minus"></i></span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="앉아 윗몸 앞으로 굽히기 횟수를 입력하세요."
+                                    id="inputLbending" defaultValue="-1" min="-1" max="200" aria-label="L_bending"
+                                    required>
+                                <div class="input-group-prepend valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputLbending').value++"><i
+                                            class="fa fa-plus"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="LShoulder">
+                            <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_Success"
+                                    checked value="Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_false"
+                                    value="false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="Lbody">
+                            <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Lbody" id="body_Success" checked
+                                    value="Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Lbody" id="body_false" value="false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="LSide">
+                            <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LSide" id="Side_Success" checked
+                                    value="Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LSide" id="Side_false" value="false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                        <div class="my-3 mx-auto d-block" aria-required="true" id="LLower">
+                            <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LLower" id="Lower_Success" checked
+                                    value="Lower_Success">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
+                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="LLower" id="Lower_false"
+                                    value="Lower_false">
+                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
+                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4-6 학년의 경우 추가 항목 신설 -->
+                    <div id="pushupSection" style="display: none;">
+                        <h5 class="d-block">팔굽혀펴기 : &nbsp;&nbsp;</h5>
+                        <div class="input-group mb-3 my-3" id="pushup">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputpushup').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="팔굽혀펴기 횟수를 입력하세요." id="inputpushup"
+                                defaultValue="-1" min="-1" max="200" aria-label="pushup" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputpushup').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- !Input for Upper body -->
+                    <div id="ageBox">
+                        <h5 class="card-title">윗몸 말아올리기 (회) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputUpperbody').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="윗몸말아올리기 횟수를 입력하세요."
+                                id="inputUpperbody" min="5" max="200" aria-label="Upperbody" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputUpperbody').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- !State of health input -->
+                    <h5>악력</h5>
+                    <div class="mb-3">
+                        <div class="input-group is-valid">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="R_grip">오른쪽 1차</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 1차 악력 " id="R_grip_1"
+                                aria-label="R_grip" required>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="R_grip">오른쪽 2차</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 2차 악력 " id="R_grip_2"
+                                aria-label="R_grip" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group is-valid">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="L_grip">왼쪽 1차 </label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 1차 악력 " id="L_grip_1"
+                                aria-label="R_grip" required>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="L_grip">왼쪽 2차 </label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 2차 악력 " id="L_grip_2"
+                                aria-label="R_grip" required>
+                        </div>
+                    </div>
+
+                    <!-- !Input for 50M Run -->
+                    <div id="ageBox">
+                        <h5 class="card-title">50m 달리기 (초) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('input50mrun').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="50m 달리기 시간을 입력하세요." id="input50mrun"
+                                min="5" max="200" aria-label="50mrun" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('input50mrun').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- !Input for jump meter -->
+                    <div id="ageBox">
+                        <h5 class="card-title">제자리 멀리뛰기 (cm) : </h5>
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-append valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('jumpmeter').value--"><i
+                                        class="fa fa-minus"></i></span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="멀리뛰기 거리를 입력하세요." id="inputjumpmeter"
+                                min="5" max="300" aria-label="jumpmeter" required>
+                            <div class="input-group-prepend valChanger">
+                                <span class="input-group-text" style="cursor: pointer;"
+                                    onclick="document.getElementById('inputjumpmeter').value++"><i
+                                        class="fa fa-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="settings d-flex justify-content-center align-content-center">
                         <button id="settingsBtn" class="link btn text-info text-muted font-weight-bolder"><i
                                 class="fa fa-plus"></i> Settings</button>

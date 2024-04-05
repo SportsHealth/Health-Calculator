@@ -8,11 +8,62 @@ let inputAge = document.getElementById("inputAge");
 let inputWeight = document.getElementById("inputWeight");
 let inputCentimeter = document.getElementById("inputCentimeter");
 
+//초등학교, 반, 번호
+let inputEName = document.getElementById("inputEName");
+let inputSchollClass = document.getElementById("inputSchollClass");
+let inputSchollClassNum = document.getElementById("inputSchollClassNum");
+
+//오래달리기
+let inputRoundRun = document.getElementById("inputRoundRun");
+//오래달리기걷기
+let inputlongrun = document.getElementById("inputlongrun");
+
+//스탭검사
+let inputstep1 = document.getElementById("inputstep1");
+let inputstep2 = document.getElementById("inputstep2");
+let inputstep3 = document.getElementById("inputstep3");
+
+//앞으로 굽히기
+let inputRbending = document.getElementById("inputRbending");
+let inputLbending = document.getElementById("inputLbending");
+
+//팔굽혀펴기
+let inputpushup = document.getElementById("inputpushup");
+//윗몸 말아올리기
+let inputUpperbody = document.getElementById("inputUpperbody");
+
+//악력
+let R_grip_1 = document.getElementById("R_grip_1");
+let R_grip_2 = document.getElementById("R_grip_2");
+let L_grip_1 = document.getElementById("L_grip_1");
+let L_grip_2 = document.getElementById("L_grip_2");
+
+//50M달리기
+let input50mrun = document.getElementById("input50mrun");
+//제자리 멀리뛰기
+let inputjumpmeter = document.getElementById("inputjumpmeter");
+
 let InputInch = document.getElementById("InputInch");
 let inputFoot = document.getElementById("inputFoot");
 
 let calculate = document.getElementById("calculate");
 let result = document.getElementById("result");
+
+//todo: 학년을 기준으로 추가 항목 생성하기
+let inputSchollYear = document.getElementById("inputSchollYear");
+function changeSchollYear() {
+  if (inputSchollYear.value >= 4) {
+    pushupSection.style.display = "block";
+    enduranceSection.style.display = "block";
+    RbendingSection.style.display = "block";
+    LbendingSection.style.display = "block";
+  } else {
+    pushupSection.style.display = "none";
+    enduranceSection.style.display = "none";
+    RbendingSection.style.display = "none";
+    LbendingSection.style.display = "none";
+  }
+}
 //TODO: Make a ifelse statement for the + Settings button to give the user more controlls
 let settingsBtn = document.getElementById("settingsBtn");
 let settingSection = document.getElementById("settingSection");
@@ -78,6 +129,7 @@ function darkMode() {
   var element = document.body;
   var element2 = document.querySelectorAll(".card");
   var element3 = document.querySelectorAll(".card-body");
+  var h6s = document.querySelectorAll("h6");
   var h5s = document.querySelectorAll("h5");
   var h4s = document.querySelectorAll("h4");
   var inputs = document.querySelectorAll(".form-control");
@@ -207,7 +259,46 @@ function calculateHealth() {
   let age = Number(inputAge.value);
   let weight = Number(inputWeight.value);
   let gender = document.querySelector("input[name='gender']:checked").value;
-  let physicalState = document.getElementById("physicalState").value;
+
+  //반, 번호
+  let SchollYear = Number(inputSchollYear.value);
+  let SchollClass = Number(inputSchollClass.value);
+  let SchollClassNum = Number(inputSchollClassNum.value);
+
+  //종합유연성
+  let Rbending = Number(inputRbending.value);
+  let Lbending = Number(inputLbending.value);
+
+  let R_Shoulder = document.querySelector(
+    "input[name='RShoulder']:checked"
+  ).value;
+  let R_body = document.querySelector("input[name='Rbody']:checked").value;
+  let R_Side = document.querySelector("input[name='RSide']:checked").value;
+  let R_Lower = document.querySelector("input[name='RLower']:checked").value;
+
+  let L_Shoulder = document.querySelector(
+    "input[name='LShoulder']:checked"
+  ).value;
+  let L_body = document.querySelector("input[name='Lbody']:checked").value;
+  let L_Side = document.querySelector("input[name='LSide']:checked").value;
+  let L_Lower = document.querySelector("input[name='LLower']:checked").value;
+
+  //평가종목
+  let longrun = Number(inputlongrun.value).toFixed(2);
+  let step1 = Number(inputstep1.value);
+  let step2 = Number(inputstep2.value);
+  let step3 = Number(inputstep3.value);
+
+  let RoundRun = Number(inputRoundRun.value);
+  let pushup = Number(inputpushup.value);
+  let Upperbody = Number(inputUpperbody.value);
+
+  let RR_grip_1 = Number(R_grip_1.value).toFixed(2);
+  let RR_grip_2 = Number(R_grip_2.value).toFixed(2);
+  let LL_grip_1 = Number(L_grip_1.value).toFixed(2);
+  let LL_grip_2 = Number(L_grip_2.value).toFixed(2);
+
+  //let physicalState = document.getElementById("physicalState").value;
   let height;
   //Convert Inches to centimeter for get the height in cm scale
   if (heightType === "centimeter") {
@@ -224,17 +315,20 @@ function calculateHealth() {
   }
 
   console.log(
-    `Height ${height}, Weight ${weight}, Age ${age}, gender ${gender}, physical state ${physicalState}`
+    `Height ${height}, Weight ${weight}, Age ${age}, gender ${gender}, inputEName ${inputEName}, 
+    SchollYear ${SchollYear},SchollClass ${SchollClass},SchollClassNum ${SchollClassNum},
+    inputlongrun ${longrun},
+    step1 ${step1},step2 ${step2},step3 ${step3},
+    R_Shoulder ${R_Shoulder},R_body ${R_body},R_Side ${R_Side},R_Lower ${R_Lower},
+    L_Shoulder ${L_Shoulder},L_body ${L_body},L_Side ${L_Side},L_Lower ${L_Lower},
+    inputRbending ${Rbending},inputLbending ${Lbending},
+    inputpushup ${pushup},inputUpperbody ${Upperbody},inputRoundRun ${RoundRun},
+    R_grip_1 ${RR_grip_1},R_grip_2 ${RR_grip_2},L_grip_1 ${LL_grip_1},L_grip_2 ${LL_grip_2},
+    `
   );
   //TODO: Add a verification for calculation
 
-  if (
-    age == 0 ||
-    height == null ||
-    height === undefined ||
-    weight == 0 ||
-    physicalState === "none"
-  ) {
+  if (age == 0 || height == null || height === undefined || weight == 0) {
     errorAlert.style.display = "block";
     successAlert.style.display = "none";
     result.innerHTML = `
@@ -264,22 +358,159 @@ function calculateHealth() {
     }
     console.log(`Your BMR ${BMR}`);
 
-    //TODO: Calculate  calorie according to physical state
-    let multipicationValue;
-    if (physicalState === "low") {
-      multipicationValue = 1.2;
-    } else if (physicalState === "normal") {
-      multipicationValue = 1.375;
-    } else if (physicalState === "medium") {
-      multipicationValue = 1.55;
-    } else if (physicalState === "high") {
-      multipicationValue = 1.725;
-    } else if (physicalState === "veryHigh") {
-      multipicationValue = 1.9;
+    //왕복오래 달리기 기준표
+    let rank_roundrun;
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        if (RoundRun <= 16) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 29) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 45) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 61) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 2) {
+        if (RoundRun <= 19) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 34) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 56) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 79) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 3) {
+        if (RoundRun <= 22) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 39) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 64) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 87) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 4) {
+        if (RoundRun <= 25) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 44) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 68) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 95) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 5) {
+        if (RoundRun <= 28) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 49) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 72) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 99) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 6) {
+        if (RoundRun <= 31) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 53) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 77) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 103) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      }
     } else {
-      multipicationValue = "Choose the physical state";
+      if (SchollYear == 1) {
+        if (RoundRun <= 14) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 24) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 38) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 52) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 2) {
+        if (RoundRun <= 16) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 29) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 44) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 60) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 3) {
+        if (RoundRun <= 18) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 34) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 50) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 68) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 4) {
+        if (RoundRun <= 20) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 39) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 56) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 76) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 5) {
+        if (RoundRun <= 22) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 44) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 62) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 84) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      } else if (SchollYear == 6) {
+        if (RoundRun <= 24) {
+          rank_roundrun = 5;
+        } else if (RoundRun <= 49) {
+          rank_roundrun = 4;
+        } else if (RoundRun <= 68) {
+          rank_roundrun = 3;
+        } else if (RoundRun <= 92) {
+          rank_roundrun = 2;
+        } else {
+          rank_roundrun = 1;
+        }
+      }
     }
-    calories = BMR * multipicationValue;
+
+    calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
     kilojoules = calories * 4.184;
@@ -395,23 +626,14 @@ function calculateHealth() {
 
     htmlForCalories = `
     <div class="my-3 d-flex justify-content-center align-content-center flex-column">
-    <h5 class="card-header text-center my-3">Your Daily ${bodyBurningText} needs</h5>
-    <h3 class="card-title text-center" id="calculateTitle">${bodyBurningText} need Per Day : </h3>
-    <h4 class="d-block font-weight-bold mx-auto" style="font-size: 1.5rem;">
-        <sup><i class="fa fa-fire text-danger"></i></sup> <span id="calorieResult"> ${bodyBurning}
-            ${bodyBurningText}/Day</span>
-    </h4>
-</div>
-<hr>
-<h5 class="d-inline-block">BMR : </h5>
-<h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-    style="font-size: 1.5rem;" id="BMRResult">${BMR}</h5>
-<hr>
-<h5 class="d-inline-block">${bodyBurningText} : (c)</h5>
-<h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-    style="font-size: 1.5rem;" id="SD">
-    <i class="fa fa-clipboard"></i> ${BMR} X ${multipicationValue} ${multipicationValue2}
-</h5>
+    <h5 class="card-header text-center my-3">건강검사 실시 현황</h5>
+    </div>
+    <hr>
+    <h5 class="d-inline-block">왕복오래달리기 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5>
+    <hr>
+
 <hr>
 <h5 class="d-inline-block">Used BMR Law : </h5>
 <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
@@ -423,6 +645,7 @@ style="font-size: 1.5rem;" id="SD">
     //TODO: BMI HTML
     htmlForBMI = `
     <div class="my-3 d-flex justify-content-center align-content-center flex-column text-center">
+  
     <h5 class="card-header my-3">당신의 건강상태</h5>
     <h3 class="card-title text-center" id="calculateTitle">Health State (BMI) : </h3>
     <h4 class="d-block font-weight-bold mx-auto" style="font-size: 1rem;">
