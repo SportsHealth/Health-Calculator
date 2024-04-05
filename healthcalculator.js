@@ -514,7 +514,7 @@ function calculateHealth() {
     let rank_longrun;
     if (gender === "male") {
       if (SchollYear <= 4) {
-        rank_lomgrun = "대상이 아닙니다.(5학년 ~ 6학년)";
+        rank_longrun = "대상이 아닙니다.(5학년 ~ 6학년)";
       } else if (SchollYear == 5) {
         if (longrun <= 281) {
           rank_longrun = 1;
@@ -542,7 +542,7 @@ function calculateHealth() {
       }
     } else {
       if (SchollYear <= 4) {
-        rank_lomgrun = "대상이 아닙니다.(5학년 ~ 6학년)";
+        rank_longrun = "대상이 아닙니다.(5학년 ~ 6학년)";
       } else if (SchollYear == 5) {
         if (longrun <= 299) {
           rank_longrun = 1;
@@ -569,7 +569,7 @@ function calculateHealth() {
         }
       }
     }
-    //오래달리기걷기
+    //앉아윗몸앞으로 굽히기
     let rank_Rbending;
     if (gender === "male") {
       if (SchollYear <= 4) {
@@ -620,7 +620,7 @@ function calculateHealth() {
     let rank_Lbending;
     if (gender === "male") {
       if (SchollYear <= 4) {
-        rank_Rberank_Lbendingnding = "대상이 아닙니다.(5학년 ~ 6학년)";
+        rank_Lbending = "대상이 아닙니다.(5학년 ~ 6학년)";
       } else {
         if (Rbending <= -4.1) {
           rank_Lbending = 5;
@@ -663,6 +663,46 @@ function calculateHealth() {
         }
       }
     }
+
+    //종합유연성 기준표
+    let rank_flexibiliy = 0;
+    if (R_Shoulder == "Shoulder_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (R_body == "body_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (R_Side == "Side_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (R_Lower == "Lower_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (L_Shoulder == "Shoulder_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (L_body == "body_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (L_Side == "Side_Success") {
+      rank_flexibiliy += 1;
+    }
+    if (L_Lower == "Lower_Success") {
+      rank_flexibiliy += 1;
+    }
+    let final_rank_flexibiliyty;
+    if (rank_flexibiliy <= 4) {
+      final_rank_flexibiliyty = 5;
+    } else if (rank_flexibiliy <= 5) {
+      final_rank_flexibiliyty = 4;
+    } else if (rank_flexibiliy <= 6) {
+      final_rank_flexibiliyty = 3;
+    } else if (rank_flexibiliy <= 7) {
+      final_rank_flexibiliyty = 2;
+    } else {
+      final_rank_flexibiliyty = 1;
+    }
+
     calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
@@ -777,6 +817,20 @@ function calculateHealth() {
     let htmlForCalories;
     let htmlForButtons;
 
+    let final_longrun;
+    let final_rbend;
+    let final_lbend;
+
+    if (SchollYear <= 4) {
+      final_longrun = `${rank_longrun}`;
+      final_rbend = `${rank_Rbending}`;
+      final_lbend = `${rank_Lbending}`;
+    } else {
+      final_longrun = `${longrun} 초 / ${rank_longrun} 등급`;
+      final_rbend = `${Rbending} cm / ${rank_Rbending} 등급`;
+      final_lbend = `${Lbending} cm / ${rank_Lbending} 등급`;
+    }
+
     htmlForCalories = `
     <div class="my-3 d-flex justify-content-center align-content-center flex-column">
     <h5 class="card-header text-center my-3">건강검사 실시 현황</h5>
@@ -787,7 +841,7 @@ function calculateHealth() {
         style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
         <h5 class="d-inline-block">오래달리기걷기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>
+            style="font-size: 1.5rem;" id="longRun">${final_longrun}</h5>
         <hr>
         <h5 class="d-inline-block">스탭검사 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
@@ -795,11 +849,15 @@ function calculateHealth() {
         <hr>
         <h5 class="d-inline-block">오른쪽 앉아윗몸앞으로 굽히기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${Rbending} cm / ${rank_Rbending} 등급</h5>
+            style="font-size: 1.5rem;" id="longRun">${final_rbend}</h5>
         <hr>
         <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${Lbending} cm / ${rank_Lbending} 등급</h5>
+            style="font-size: 1.5rem;" id="longRun">${final_lbend}</h5>
+        <hr>
+        <h5 class="d-inline-block">종합유연성 기준표 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
         <hr>
         rank_Lbending
 <hr>
