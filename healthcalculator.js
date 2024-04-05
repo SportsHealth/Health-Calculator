@@ -284,7 +284,7 @@ function calculateHealth() {
   let L_Lower = document.querySelector("input[name='LLower']:checked").value;
 
   //평가종목
-  let longrun = Number(inputlongrun.value).toFixed(2);
+  let longrun = Number(inputlongrun.value);
   let step1 = Number(inputstep1.value);
   let step2 = Number(inputstep2.value);
   let step3 = Number(inputstep3.value);
@@ -510,6 +510,66 @@ function calculateHealth() {
       }
     }
 
+    //오래달리기걷기
+    let rank_longrun;
+    if (gender === "male") {
+      if (SchollYear <= 4) {
+        rank_lomgrun = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else if (SchollYear == 5) {
+        if (longrun <= 281) {
+          rank_longrun = 1;
+        } else if (longrun <= 324) {
+          rank_longrun = 2;
+        } else if (longrun <= 409) {
+          rank_longrun = 3;
+        } else if (longrun <= 479) {
+          rank_longrun = 4;
+        } else {
+          rank_longrun = 5;
+        }
+      } else if (SchollYear == 6) {
+        if (longrun <= 241) {
+          rank_longrun = 1;
+        } else if (longrun <= 314) {
+          rank_longrun = 2;
+        } else if (longrun <= 379) {
+          rank_longrun = 3;
+        } else if (longrun <= 449) {
+          rank_longrun = 4;
+        } else {
+          rank_longrun = 5;
+        }
+      }
+    } else {
+      if (SchollYear <= 4) {
+        rank_lomgrun = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else if (SchollYear == 5) {
+        if (longrun <= 299) {
+          rank_longrun = 1;
+        } else if (longrun <= 359) {
+          rank_longrun = 2;
+        } else if (longrun <= 441) {
+          rank_longrun = 3;
+        } else if (longrun <= 501) {
+          rank_longrun = 4;
+        } else {
+          rank_longrun = 5;
+        }
+      } else if (SchollYear == 6) {
+        if (longrun <= 299) {
+          rank_longrun = 1;
+        } else if (longrun <= 353) {
+          rank_longrun = 2;
+        } else if (longrun <= 429) {
+          rank_longrun = 3;
+        } else if (longrun <= 479) {
+          rank_longrun = 4;
+        } else {
+          rank_longrun = 5;
+        }
+      }
+    }
+
     calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
@@ -631,9 +691,12 @@ function calculateHealth() {
     <hr>
     <h5 class="d-inline-block">왕복오래달리기 : </h5>
     <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-        style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5>
+        style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
+    <h5 class="d-inline-block">오래달리기걷기 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>
     <hr>
-
+    rank_roundrun
 <hr>
 <h5 class="d-inline-block">Used BMR Law : </h5>
 <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
