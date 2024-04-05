@@ -266,8 +266,8 @@ function calculateHealth() {
   let SchollClassNum = Number(inputSchollClassNum.value);
 
   //종합유연성
-  let Rbending = Number(inputRbending.value);
-  let Lbending = Number(inputLbending.value);
+  let Rbending = Number(inputRbending.value).toFixed(1);
+  let Lbending = Number(inputLbending.value).toFixed(1);
 
   let R_Shoulder = document.querySelector(
     "input[name='RShoulder']:checked"
@@ -569,7 +569,100 @@ function calculateHealth() {
         }
       }
     }
+    //오래달리기걷기
+    let rank_Rbending;
+    if (gender === "male") {
+      if (SchollYear <= 4) {
+        rank_Rbending = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else {
+        if (Rbending <= -4.1) {
+          rank_Rbending = 5;
+        } else if (Rbending <= 0.9) {
+          rank_Rbending = 4;
+        } else if (Rbending <= 4.9) {
+          rank_Rbending = 3;
+        } else if (Rbending <= 7.9) {
+          rank_Rbending = 2;
+        } else {
+          rank_Rbending = 1;
+        }
+      }
+    } else {
+      if (SchollYear <= 4) {
+        rank_Rbending = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else if (SchollYear == 5) {
+        if (Rbending <= -0) {
+          rank_Rbending = 5;
+        } else if (Rbending <= 4.9) {
+          rank_Rbending = 4;
+        } else if (Rbending <= 6.9) {
+          rank_Rbending = 3;
+        } else if (Rbending <= 9.9) {
+          rank_Rbending = 2;
+        } else {
+          rank_Rbending = 1;
+        }
+      } else if (SchollYear == 6) {
+        if (Rbending <= 1.9) {
+          rank_Rbending = 5;
+        } else if (Rbending <= 4.9) {
+          rank_Rbending = 4;
+        } else if (Rbending <= 9.9) {
+          rank_Rbending = 3;
+        } else if (Rbending <= 13.9) {
+          rank_Rbending = 2;
+        } else {
+          rank_Rbending = 1;
+        }
+      }
+    }
 
+    let rank_Lbending;
+    if (gender === "male") {
+      if (SchollYear <= 4) {
+        rank_Rberank_Lbendingnding = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else {
+        if (Rbending <= -4.1) {
+          rank_Lbending = 5;
+        } else if (Rbending <= 0.9) {
+          rank_Lbending = 4;
+        } else if (Rbending <= 4.9) {
+          rank_Lbending = 3;
+        } else if (Rbending <= 7.9) {
+          rank_Lbending = 2;
+        } else {
+          rank_Lbending = 1;
+        }
+      }
+    } else {
+      if (SchollYear <= 4) {
+        rank_Lbending = "대상이 아닙니다.(5학년 ~ 6학년)";
+      } else if (SchollYear == 5) {
+        if (Rbending <= -0) {
+          rank_Lbending = 5;
+        } else if (Rbending <= 4.9) {
+          rank_Lbending = 4;
+        } else if (Rbending <= 6.9) {
+          rank_Lbending = 3;
+        } else if (Rbending <= 9.9) {
+          rank_Lbending = 2;
+        } else {
+          rank_Lbending = 1;
+        }
+      } else if (SchollYear == 6) {
+        if (Rbending <= 1.9) {
+          rank_Lbending = 5;
+        } else if (Rbending <= 4.9) {
+          rank_Lbending = 4;
+        } else if (Rbending <= 9.9) {
+          rank_Lbending = 3;
+        } else if (Rbending <= 13.9) {
+          rank_Lbending = 2;
+        } else {
+          rank_Lbending = 1;
+        }
+      }
+    }
     calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
@@ -692,11 +785,23 @@ function calculateHealth() {
     <h5 class="d-inline-block">왕복오래달리기 : </h5>
     <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
         style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
-    <h5 class="d-inline-block">오래달리기걷기 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-        style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>
-    <hr>
-    rank_roundrun
+        <h5 class="d-inline-block">오래달리기걷기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">스탭검사 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
+        <hr>
+        <h5 class="d-inline-block">오른쪽 앉아윗몸앞으로 굽히기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${Rbending} cm / ${rank_Rbending} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${Lbending} cm / ${rank_Lbending} 등급</h5>
+        <hr>
+        rank_Lbending
 <hr>
 <h5 class="d-inline-block">Used BMR Law : </h5>
 <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
