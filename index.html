@@ -53,7 +53,7 @@
 
             <div class="card my-3 box-shadow" style="width: 100%;">
                 <div class="card-body">
-                    <h3 class="text-center"><i class="fa fa-calculator text-dark phone"></i>Calculate Area
+                    <h3 class="text-center"><i class="fa fa-calculator text-dark phone"></i>건강체력검사 기록지
                         <label class="switch float-right">
                             <input type="checkbox" onclick="darkMode()">
                             <span class="slider round"></span>
@@ -505,7 +505,7 @@
                                         class="fa fa-minus"></i></span>
                             </div>
                             <input type="number" class="form-control" placeholder="50m 달리기 시간을 입력하세요." id="input50mrun"
-                                min="5" max="200" aria-label="50mrun" required>
+                                min="0" max="200" aria-label="50mrun" required>
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('input50mrun').value++"><i
@@ -520,11 +520,11 @@
                         <div class="input-group mb-3 my-3">
                             <div class="input-group-append valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
-                                    onclick="document.getElementById('jumpmeter').value--"><i
+                                    onclick="document.getElementById('inputjumpmeter').value--"><i
                                         class="fa fa-minus"></i></span>
                             </div>
                             <input type="number" class="form-control" placeholder="멀리뛰기 거리를 입력하세요." id="inputjumpmeter"
-                                min="5" max="300" aria-label="jumpmeter" required>
+                                min="0" max="300" aria-label="jumpmeter" required>
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('inputjumpmeter').value++"><i
@@ -614,7 +614,7 @@
     <!-- !The result -->
     <div class="card my-3 box-shadow" style="width: 100%;" id="resultBox">
         <div class="card-body">
-            <h3 class="card-title text-center"><i class="fa fa-calculator"></i> Result</h3>
+            <h3 class="card-title text-center"><i class="fa fa-calculator"></i> 결과 기록지</h3>
             <hr>
 
             <!-- !Navigator for results -->

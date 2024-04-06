@@ -41,7 +41,7 @@ let L_grip_2 = document.getElementById("L_grip_2");
 //50M달리기
 let input50mrun = document.getElementById("input50mrun");
 //제자리 멀리뛰기
-let inputjumpmeter = document.getElementById("inputjumpmeter");
+let jumpmeter = document.getElementById("inputjumpmeter");
 
 let InputInch = document.getElementById("InputInch");
 let inputFoot = document.getElementById("inputFoot");
@@ -298,6 +298,9 @@ function calculateHealth() {
   let LL_grip_1 = Number(L_grip_1.value).toFixed(2);
   let LL_grip_2 = Number(L_grip_2.value).toFixed(2);
 
+  let run50m = Number(input50mrun.value).toFixed(2);
+  let jumpingmeter = Number(jumpmeter.value).toFixed(1);
+
   //let physicalState = document.getElementById("physicalState").value;
   let height;
   //Convert Inches to centimeter for get the height in cm scale
@@ -324,6 +327,7 @@ function calculateHealth() {
     inputRbending ${Rbending},inputLbending ${Lbending},
     inputpushup ${pushup},inputUpperbody ${Upperbody},inputRoundRun ${RoundRun},
     R_grip_1 ${RR_grip_1},R_grip_2 ${RR_grip_2},L_grip_1 ${LL_grip_1},L_grip_2 ${LL_grip_2},
+    run50m ${run50m},jumpmeter ${jumpingmeter},
     `
   );
   //TODO: Add a verification for calculation
@@ -703,6 +707,674 @@ function calculateHealth() {
       final_rank_flexibiliyty = 1;
     }
 
+    //윗몸 말아올리기
+    let rank_Upperbody;
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        if (Upperbody <= 1) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 9) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 20) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 40) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 2) {
+        if (Upperbody <= 2) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 13) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 25) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 60) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 3) {
+        if (Upperbody <= 3) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 13) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 29) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 65) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 4) {
+        if (Upperbody <= 6) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 21) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 39) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 79) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear <= 5) {
+        if (Upperbody <= 9) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 21) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 39) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 79) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      }
+    } else {
+      if (SchollYear == 1) {
+        if (Upperbody <= 3) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 7) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 19) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 40) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 2) {
+        if (Upperbody <= 3) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 11) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 28) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 52) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 3) {
+        if (Upperbody <= 5) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 12) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 28) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 52) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 4) {
+        if (Upperbody <= 5) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 17) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 28) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 52) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 5) {
+        if (Upperbody <= 6) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 22) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 35) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 59) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      } else if (SchollYear == 6) {
+        if (Upperbody <= 6) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 22) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 42) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 59) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+      }
+    }
+
+    let rgrip;
+    let lgrip;
+    let rank_rgrip;
+    let rank_lgrip;
+
+    if (RR_grip_1 >= RR_grip_2) {
+      rgrip = RR_grip_1;
+    } else {
+      rgrip = RR_grip_2;
+    }
+    if (LL_grip_1 >= LL_grip_2) {
+      lgrip = LL_grip_1;
+    } else {
+      lgrip = LL_grip_2;
+    }
+
+    var m_grip_1 = [7.4, 10.4, 13.9, 24.9];
+    var m_grip_2 = [8.4, 10.9, 15.9, 29.9];
+    var m_grip_3 = [8.9, 11.9, 17.9, 30.9];
+    var m_grip_4 = [11.4, 14.9, 18.4, 30.9];
+    var m_grip_5 = [12.4, 16.9, 22.9, 30.9];
+    var m_grip_6 = [14.9, 18.9, 26.4, 34.9];
+
+    var w_grip_1 = [6.4, 8.9, 11.9, 24.9];
+    var w_grip_2 = [7.9, 9.9, 12.9, 24.9];
+    var w_grip_3 = [6.9, 10.9, 15.9, 28.9];
+    var w_grip_4 = [10.4, 13.4, 17.4, 28.9];
+
+    var w_grip_5 = [11.9, 15.4, 18.9, 28.9];
+    var w_grip_6 = [13.9, 18.9, 26.4, 32.9];
+
+    console.log(`Your m_grip_1 m_grip_1 ${Math.min.apply(null, m_grip_1)}`);
+    //오른손
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_1[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_1)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_2[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_2)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_3[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_3)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_4[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_4)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_5[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_5)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > m_grip_6[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, m_grip_6)) {
+            rank_rgrip = 5;
+          }
+        }
+      }
+    } else {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_1[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_1)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_2[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_w)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_3[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_3)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_4[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_4)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_5[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_5)) {
+            rank_rgrip = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (rgrip > w_grip_6[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (rgrip < Math.min.apply(null, w_grip_6)) {
+            rank_rgrip = 5;
+          }
+        }
+      }
+    }
+
+    //왼손
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_1[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_1)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_2[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_2)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_3[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_3)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_4[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_4)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_5[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_5)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > m_grip_6[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, m_grip_6)) {
+            rank_lgrip = 5;
+          }
+        }
+      }
+    } else {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_1[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_1)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_2[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_2)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_3[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_3)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_4[i]) {
+            rank_rgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_4)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_5[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_5)) {
+            rank_lgrip = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (lgrip > w_grip_6[i]) {
+            rank_lgrip = 4 - i;
+          }
+          if (lgrip < Math.min.apply(null, w_grip_6)) {
+            rank_lgrip = 5;
+          }
+        }
+      }
+    }
+
+    //run50m ${run50m},jumpmeter ${jumpingmeter}
+
+    var m_run50m_1 = [10.2, 11.3, 12.1, 15.0];
+    var m_run50m_2 = [9.5, 10.5, 11.5, 14.4];
+    var m_run50m_3 = [9.0, 9.8, 11.0, 14.4];
+    var m_run50m_4 = [8.8, 9.7, 10.5, 13.2];
+    var m_run50m_5 = [8.5, 9.4, 10.2, 13.2];
+    var m_run50m_6 = [8.1, 9.1, 10.0, 12.5];
+
+    var w_run50m_1 = [10.7, 11.7, 12.5, 13.8];
+    var w_run50m_2 = [10.1, 11, 12, 13.8];
+    var w_run50m_3 = [9.8, 10.5, 11.6, 13.8];
+    var w_run50m_4 = [9.4, 10.4, 11, 13.3];
+    var w_run50m_5 = [8.9, 9.9, 10.7, 13];
+    var w_run50m_6 = [8.9, 9.8, 10.7, 12.9];
+
+    let rank_run50m;
+
+    //50m 달리기
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_1[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_1)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_2[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_2)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_3[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_3)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_4[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_4)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_5[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_5)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > m_run50m_6[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, m_run50m_6)) {
+            rank_run50m = 1;
+          }
+        }
+      }
+    } else {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_1[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_1)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_2[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_2)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_3[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_3)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_4[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_4)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_5[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_5)) {
+            rank_run50m = 1;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (run50m > w_run50m_6[i]) {
+            rank_run50m = i + 2;
+          }
+          if (run50m < Math.min.apply(null, w_run50m_6)) {
+            rank_run50m = 1;
+          }
+        }
+      }
+    }
+
+    //제자리 멀리뛰기
+
+    var m_jumpingmeter_1 = [90, 112, 123, 145];
+    var m_jumpingmeter_2 = [92, 119, 134, 154];
+    var m_jumpingmeter_3 = [100, 127, 141, 166];
+    var m_jumpingmeter_4 = [100, 130, 149, 170];
+    var m_jumpingmeter_5 = [111, 141, 159, 180];
+    var m_jumpingmeter_6 = [122, 148, 167, 200];
+
+    var w_jumpingmeter_1 = [85, 99, 110, 131];
+    var w_jumpingmeter_2 = [87, 109, 121, 140];
+    var w_jumpingmeter_3 = [92, 118, 129, 154];
+    var w_jumpingmeter_4 = [97, 119, 135, 161];
+    var w_jumpingmeter_5 = [100, 123, 145, 183];
+    var w_jumpingmeter_6 = [100, 127, 145, 183];
+
+    let rank_jumpingmeter;
+
+    if (gender === "male") {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_1[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_1)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_2[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_2)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_3[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_3)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_4[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_4)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_5[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_5)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > m_jumpingmeter_6[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_6)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      }
+    } else {
+      if (SchollYear == 1) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_1[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_1)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 2) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_2[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_2)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 3) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_3[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_3)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_4[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_4)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_5[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_5)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (jumpingmeter > w_jumpingmeter_6[i]) {
+            rank_jumpingmeter = 4 - i;
+          }
+          if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_6)) {
+            rank_jumpingmeter = 5;
+          }
+        }
+      }
+    }
+
     calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
@@ -859,15 +1531,37 @@ function calculateHealth() {
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
             style="font-size: 1.5rem;" id="longRun">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
         <hr>
-        rank_Lbending
-<hr>
+        <h5 class="d-inline-block">팔굽혀펴기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${pushup} 회</h5>
+        <hr>
+        <h5 class="d-inline-block">윗몸말아올리기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">오른손 악력 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${rgrip} kg / ${rank_rgrip} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">왼손 악력 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${lgrip} kg / ${rank_lgrip} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">50m 달리기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${run50m} 초 / ${rank_run50m} 등급</h5>
+        <hr>
+        <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
+        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+            style="font-size: 1.5rem;" id="longRun">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
+        <hr>
+        /*
 <h5 class="d-inline-block">Used BMR Law : </h5>
 <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
 style="font-size: 1.5rem;" id="SD">
-<i class="fa fa-codepen text-codepen"></i> Heris Bene-Dict 
+<i class="fa fa-codepen text-codepen"></i> Heris Bene-Dict */
 </h5>
 <hr>`;
-
     //TODO: BMI HTML
     htmlForBMI = `
     <div class="my-3 d-flex justify-content-center align-content-center flex-column text-center">
