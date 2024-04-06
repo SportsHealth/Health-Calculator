@@ -291,7 +291,7 @@ function calculateHealth() {
 
   let RoundRun = Number(inputRoundRun.value);
   let pushup = Number(inputpushup.value);
-  let Upperbody = Number(c.value);
+  let Upperbody = Number(inputUpperbody.value);
 
   let RR_grip_1 = Number(R_grip_1.value).toFixed(2);
   let RR_grip_2 = Number(R_grip_2.value).toFixed(2);
