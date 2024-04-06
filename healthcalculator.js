@@ -291,7 +291,7 @@ function calculateHealth() {
 
   let RoundRun = Number(inputRoundRun.value);
   let pushup = Number(inputpushup.value);
-  let Upperbody = Number(inputUpperbody.value);
+  let Upperbody = Number(c.value);
 
   let RR_grip_1 = Number(R_grip_1.value).toFixed(2);
   let RR_grip_2 = Number(R_grip_2.value).toFixed(2);
@@ -1626,13 +1626,14 @@ function calculateHealth() {
       final_rbend = ``;
       final_lbend = ``;
       final_bmi = ``;
+      final_pushup = ``;
       final_score = ``;
       final_rank = ``;
     } else {
       final_longrun = `
       <h5 class="d-inline-block">오래달리기걷기 : </h5>
       <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-          style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>`;
+          style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5> <hr>`;
 
       final_rbend = `       
       <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
