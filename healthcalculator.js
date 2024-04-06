@@ -1517,43 +1517,43 @@ function calculateHealth() {
         <hr>
         <h5 class="d-inline-block">스탭검사 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
+            style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
         <hr>
         <h5 class="d-inline-block">오른쪽 앉아윗몸앞으로 굽히기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${final_rbend}</h5>
+            style="font-size: 1.5rem;" id="r_bending">${final_rbend}</h5>
         <hr>
         <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${final_lbend}</h5>
+            style="font-size: 1.5rem;" id="l_bending">${final_lbend}</h5>
         <hr>
         <h5 class="d-inline-block">종합유연성 기준표 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
+            style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
         <hr>
         <h5 class="d-inline-block">팔굽혀펴기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${pushup} 회</h5>
+            style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
         <hr>
         <h5 class="d-inline-block">윗몸말아올리기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
+            style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
         <hr>
         <h5 class="d-inline-block">오른손 악력 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${rgrip} kg / ${rank_rgrip} 등급</h5>
+            style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
         <hr>
         <h5 class="d-inline-block">왼손 악력 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${lgrip} kg / ${rank_lgrip} 등급</h5>
+            style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
         <hr>
         <h5 class="d-inline-block">50m 달리기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${run50m} 초 / ${rank_run50m} 등급</h5>
+            style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
         <hr>
         <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
         <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
+            style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
         <hr>
         /*
 <h5 class="d-inline-block">Used BMR Law : </h5>
