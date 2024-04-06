@@ -1489,18 +1489,184 @@ function calculateHealth() {
     let htmlForCalories;
     let htmlForButtons;
 
+    //체지방률
+    var m_bmi_4 = [14, 20.1, 22.3, 32.3];
+    var m_bmi_5 = [14.3, 20.9, 23.3, 33.3];
+    var m_bmi_6 = [14.9, 24, 34, 34.1, 167, 200];
+
+    var w_bmi_4 = [14.3, 21.1, 23.7, 33.9];
+    var w_bmi_5 = [14.6, 21.7, 24.4, 34.6];
+    var w_bmi_6 = [22.3, 22.3, 25.1, 35.2];
+
+    let rank_bmi;
+
+    if (gender === "male") {
+      if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > m_bmi_4[i]) {
+            rank_bmi = 4 - i;
+          }
+          if (BMI < Math.min.apply(null, m_bmi_4)) {
+            rank_bmi = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > m_bmi_5[i]) {
+            rank_bmi = 4 - i;
+          }
+
+          if (BMI < Math.min.apply(null, m_bmi_5)) {
+            rank_bmi = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > m_bmi_6[i]) {
+            rank_bmi = 4 - i;
+          }
+
+          if (BMI < Math.min.apply(null, m_bmi_6)) {
+            rank_bmi = 5;
+          }
+        }
+      }
+    } else {
+      if (SchollYear == 4) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > w_bmi_4[i]) {
+            rank_bmi = 4 - i;
+          }
+          if (BMI < Math.min.apply(null, w_bmi_4)) {
+            rank_bmi = 5;
+          }
+        }
+      } else if (SchollYear == 5) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > w_bmi_5[i]) {
+            rank_bmi = 4 - i;
+          }
+
+          if (BMI < Math.min.apply(null, w_bmi_5)) {
+            rank_bmi = 5;
+          }
+        }
+      } else if (SchollYear == 6) {
+        for (i = 0; i < 4; i++) {
+          if (BMI > w_bmi_6[i]) {
+            rank_bmi = 4 - i;
+          }
+
+          if (BMI < Math.min.apply(null, w_bmi_6)) {
+            rank_bmi = 5;
+          }
+        }
+      }
+    }
+    let BMI_detail;
+
+    if (rank_bmi == 5) {
+      BMI_detail = "마름";
+    } else if (rank_bmi == 4) {
+      BMI_detail = "정상";
+    } else if (rank_bmi == 3) {
+      BMI_detail = "과체중";
+    } else if (rank_bmi == 2) {
+      BMI_detail = "경도비만";
+    } else if (rank_bmi == 1) {
+      BMI_detail = "고도비만";
+    }
+
+    if (rank_bmi == 5) {
+      rank_bmi -= 1;
+    } else if (rank_bmi == 4) {
+      rank_bmi += 1;
+    } else if (rank_bmi == 3) {
+      rank_bmi += 1;
+    } else if (rank_bmi == 2) {
+      rank_bmi += 1;
+    }
+
+    //신체의 능력점수
+    let score;
+
+    score =
+      (6 - rank_bmi) * 4 +
+      (6 - rank_longrun) * 4 +
+      (6 - rank_Rbending) * 2 +
+      (6 - rank_Lbending) * 2 +
+      (6 - rank_rgrip) * 2 +
+      (6 - rank_lgrip) * 2 +
+      (6 - rank_run50m) * 4;
+
+    // 신체의 능력등급
+    let rank;
+
+    if (score < 20) {
+      rank = 5;
+    } else if (score < 40) {
+      rank = 4;
+    } else if (score < 60) {
+      rank = 3;
+    } else if (score < 80) {
+      rank = 2;
+    } else if (score <= 100) {
+      rank = 1;
+    }
+
     let final_longrun;
     let final_rbend;
     let final_lbend;
+    let final_bmi;
+    let final_score;
+    let final_rank;
 
     if (SchollYear <= 4) {
-      final_longrun = `${rank_longrun}`;
-      final_rbend = `${rank_Rbending}`;
-      final_lbend = `${rank_Lbending}`;
+      final_longrun = ``;
+      final_rbend = ``;
+      final_lbend = ``;
+      final_bmi = ``;
+      final_score = ``;
+      final_rank = ``;
     } else {
-      final_longrun = `${longrun} 초 / ${rank_longrun} 등급`;
-      final_rbend = `${Rbending} cm / ${rank_Rbending} 등급`;
-      final_lbend = `${Lbending} cm / ${rank_Lbending} 등급`;
+      final_longrun = `
+      <h5 class="d-inline-block">오래달리기걷기 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5>`;
+
+      final_rbend = `       
+      <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="r_bending">${Rbending} cm / ${rank_Rbending} 등급</h5> <hr>`;
+
+      final_lbend = `
+      <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="l_bending">${Lbending} cm / ${rank_Lbending} 등급</h5>
+      <hr>`;
+
+      final_pushup = `
+      <h5 class="d-inline-block">팔굽혀펴기 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
+      <hr>`;
+
+      final_bmi = `
+      <h5 class="d-inline-block">체지방률 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="bmi">${BMI} kg/m^2 / ${BMI_detail} 등급</h5>
+      <hr>`;
+
+      final_score = `
+      <h5 class="d-inline-block">신체의 능력점수 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="bmi">${score} 점</h5>
+      <hr>`;
+      final_rank = `
+      <h5 class="d-inline-block">신체의 능력등급 : </h5>
+      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+          style="font-size: 1.5rem;" id="bmi">${rank} 등급</h5>
+      <hr>`;
     }
 
     htmlForCalories = `
@@ -1511,159 +1677,46 @@ function calculateHealth() {
     <h5 class="d-inline-block">왕복오래달리기 : </h5>
     <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
         style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
-        <h5 class="d-inline-block">오래달리기걷기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="longRun">${final_longrun}</h5>
-        <hr>
-        <h5 class="d-inline-block">스탭검사 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
-        <hr>
-        <h5 class="d-inline-block">오른쪽 앉아윗몸앞으로 굽히기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="r_bending">${final_rbend}</h5>
-        <hr>
-        <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="l_bending">${final_lbend}</h5>
-        <hr>
-        <h5 class="d-inline-block">종합유연성 기준표 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
-        <hr>
-        <h5 class="d-inline-block">팔굽혀펴기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
-        <hr>
-        <h5 class="d-inline-block">윗몸말아올리기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
-        <hr>
-        <h5 class="d-inline-block">오른손 악력 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
-        <hr>
-        <h5 class="d-inline-block">왼손 악력 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
-        <hr>
-        <h5 class="d-inline-block">50m 달리기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
-        <hr>
-        <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
-        <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-            style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
-        <hr>
-        /*
-<h5 class="d-inline-block">Used BMR Law : </h5>
-<h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
-style="font-size: 1.5rem;" id="SD">
-<i class="fa fa-codepen text-codepen"></i> Heris Bene-Dict */
+        ${final_longrun}</h5>
+    <h5 class="d-inline-block">스탭검사 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
+    <hr>
+    ${final_rbend}
+    ${final_lbend}
+    <h5 class="d-inline-block">종합유연성 기준표 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
+    <hr>
+    ${final_pushup}
+    <h5 class="d-inline-block">윗몸말아올리기 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
+    <hr>
+    <h5 class="d-inline-block">오른손 악력 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
+    <hr>
+    <h5 class="d-inline-block">왼손 악력 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
+    <hr>
+    <h5 class="d-inline-block">50m 달리기 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
+    <hr>
+    <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
+    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+        style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
+    <hr>
+    ${final_bmi}
+    ${final_score}
+    ${final_rank}
 </h5>
 <hr>`;
     //TODO: BMI HTML
-    htmlForBMI = `
-    <div class="my-3 d-flex justify-content-center align-content-center flex-column text-center">
-  
-    <h5 class="card-header my-3">당신의 건강상태</h5>
-    <h3 class="card-title text-center" id="calculateTitle">Health State (BMI) : </h3>
-    <h4 class="d-block font-weight-bold mx-auto" style="font-size: 1rem;">
-        <sup><i class="fa fa-${icon} text-${textColor}"></i></sup> &nbsp;&nbsp;<span id="calorieResult"> ${explainState}
-        </span> <small><a id="showBMIChart" onclick="showChart()" class="link text-primary">Chart <i class="fa fa-area-chart"></i></a></small>
-    </h4>
-</div>
-<h4>
-    <ul class="list-group">
-    <li class="list-group-item" style="display: none;" id="BMIChart">Chart : <div id="img d-flex justify-content-center">
-            <img src="bmi-chart.gif" class="d-block mx-auto img" alt="BMI Chart">
-        </div>
-    </li>
-    <li class="list-group-item">BMI Formula : <span
-            class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-                class="font-weight-bolder text-muted">=</i> weight(kg) /
-            Height(m) <sup class="font-weight-bolder">2</sup></span>
-    </li>
+    htmlForBMI = ``;
 
-    <li class="list-group-item">Your BMI (Body Mass Index) : <span
-    class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3">= ${BMI}</span> <a onclick="showBMIStateTable()" class="link text-primary" id="BMITableBtn">Show BMI Table</a>
-    <div class="card mx-auto" id="BMIStateTable" style="border: none;
-    width: 100%;
-    height: auto;
-    display: none;">
-    <br>
-    <div class="card-body bg-light mx-auto">
-        <b>Check the health stats according to BMI (Body Mass Index) </b>
-    </div>
-    <table class="table table-striped mx-auto">
-        <thead>
-            <tr>
-                <th scope="col">BMI</th>
-                <th scope="col">State</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row"> &lt; 18.5</th>
-                <td>저체중(Underweight)</td>
-            </tr>
-            <tr>
-                <th scope="row">18.5 to 24.9</th>
-                <td>일반(Normal)</td>
-            </tr>
-            <tr>
-                <th scope="row">25 to 29.9</th>
-                <td>통통(Overweight)</td>
-            </tr>
-            <tr>
-                <th scope="row">30 to 34.9</th>
-                <td>과체중(Obese I)</td>
-            </tr>
-            <tr>
-                <th scope="row">35 to 39.9</th>
-                <td>심한 과체중(Obese II)</td>
-            </tr>
-            <tr>
-                <th scope="row">&gt 40</th>
-                <td>심각한 과체중(Obese III Extreme)</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-    </li>
-    <li class="list-group-item" id="state">State : <span
-            class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-                class="font-weight-bolder text-muted">=</i> ${state}</span>
-    </li>
-    <hr>
-    <h5 class="card-header text-weight-bolder text-muted">당신에게 맞는 건강값 계산</h5>
-        <li class="list-group-item" id="goodValues">1. 당신에게 맞는 BMI 지수는 : <span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${healthyBMI}</span>
-        <span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${averageHealthyBMI} <small>(Average)</small></span>
-        </li>
-        <li class="list-group-item">2.당신에게 맞는 몸무게는 : <span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${healthyWeight}</span>
-        <span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${averageHealthyWeight} <small>(Average)</small></span>
-        </li>
-        <li class="list-group-item" id="goodWeightDifference">${weightText}<span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${defferenceWeight}</span>
-        </li>
-        <hr>
-        <h5 class="card-header text-weight-bolder text-muted">당신에게 드리는 제안</h5>
-        <li class="list-group-item" id="tips">Tips : <span
-        class=" alert responsive d-block font-weight-bolder text-warning text-muted bg-light my-3"><i
-        class="font-weight-bolder text-muted">=</i> ${tips}</span>
-        </li>
-    </ul>
-</h4>
-    `;
     //TODO: Button HTML
     htmlForButtons = `
     <button class="btn btn-outline-warning" type="submit" onclick="location.reload();">Reload</button>
