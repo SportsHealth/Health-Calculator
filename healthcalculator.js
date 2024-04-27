@@ -4,7 +4,7 @@ let centimeterBox = document.getElementById("centimeterBox");
 let inchBox = document.getElementById("inchBox");
 
 let heightRadios = document.querySelectorAll("input[name='heightType']");
-let inputAge = document.getElementById("inputAge");
+//let inputAge = document.getElementById("inputAge");
 let inputWeight = document.getElementById("inputWeight");
 let inputCentimeter = document.getElementById("inputCentimeter");
 
@@ -65,6 +65,7 @@ function changeSchollYear() {
   }
 }
 //TODO: Make a ifelse statement for the + Settings button to give the user more controlls
+/*
 let settingsBtn = document.getElementById("settingsBtn");
 let settingSection = document.getElementById("settingSection");
 settingsBtn.addEventListener("click", (e) => {
@@ -77,7 +78,7 @@ settingsBtn.addEventListener("click", (e) => {
     settingsBtn.innerHTML = "<i class='fa fa-plus'></i> Settings";
   }
 });
-
+*/
 //TODO: Hide the intro alert after several minutes
 let introAlert = document.getElementById("introAlert");
 setTimeout(() => {
@@ -256,13 +257,14 @@ function calculateHealth() {
   let calculateItemChecked = document.querySelector(
     "input[name='calculate']:checked"
   ).value;
-  let age = Number(inputAge.value);
+  //let age = Number(inputAge.value); //나이측정 삭제로 인한 주석처리
   let weight = Number(inputWeight.value);
   let gender = document.querySelector("input[name='gender']:checked").value;
 
   //반, 번호
   let SchollYear = Number(inputSchollYear.value);
   let SchollClass = Number(inputSchollClass.value);
+  let age = SchollClass + 7;
   let SchollClassNum = Number(inputSchollClassNum.value);
 
   //종합유연성
