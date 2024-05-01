@@ -9,7 +9,7 @@ let inputWeight = document.getElementById("inputWeight");
 let inputCentimeter = document.getElementById("inputCentimeter");
 
 //초등학교, 반, 번호
-//let inputEName = document.getElementById("inputEName");
+let inputEName = document.getElementById("inputEName");
 let inputSchollClass = document.getElementById("inputSchollClass");
 let inputSchollClassNum = document.getElementById("inputSchollClassNum");
 
@@ -272,7 +272,7 @@ function calculateHealth() {
   let gender = document.querySelector("input[name='gender']:checked").value;
 
   //학교, 학년, 반, 번호
-  //let EName = String(inputEName.value);
+  let EName = String(inputEName.value);
   let SchollYear = Number(inputSchollYear.value);
   let SchollClass = Number(inputSchollClass.value);
   let age = SchollClass + 7;
@@ -331,7 +331,7 @@ function calculateHealth() {
   }
 
   console.log(
-    `Height ${height}, Weight ${weight}, Age ${age}, gender ${gender}, 
+    `Height ${height}, Weight ${weight}, Age ${age}, gender ${gender}, EName ${EName}, 
     SchollYear ${SchollYear},SchollClass ${SchollClass},SchollClassNum ${SchollClassNum},
     inputlongrun ${longrun},
     step1 ${step1},step2 ${step2},step3 ${step3},
@@ -350,6 +350,7 @@ function calculateHealth() {
     height == null ||
     height === undefined ||
     weight == 0 ||
+    EName == 0 ||
     SchollYear == 0 ||
     SchollClass == 0 ||
     SchollClassNum == 0
@@ -1743,7 +1744,7 @@ function calculateHealth() {
     htmlForButtons = `
     <button class="btn btn-outline-warning" type="submit" onclick="location.reload();">Reload</button>
     <button class="btn btn-outline-success position-relative float-right" type="submit"
-    onclick="document.title='${SchollYear}학년_${SchollClass}반_${SchollClassNum}번_검사결과지';window.print();">Print/Save</button>`;
+    onclick="document.title='${EName}초등학교_${SchollYear}학년_${SchollClass}반_${SchollClassNum}번_검사결과지';window.print();">Print/Save</button>`;
     result.classList.add("d-none");
 
     //TODO: Add alert with success message when calculate will be finished
