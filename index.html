@@ -179,6 +179,37 @@
                         </div>
                     </div>
 
+                    <!-- !심폐지구력 -->
+                    <div id="endurance">
+                        <h5 class="card-title">심폐지구력 종목을 선택해주세요. </h5>
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="endurance_event">심폐지구력</label>
+                            </div>
+                            <select class="custom-select" id="endurance_event" onchange="endurance_event()" required>
+                                <option value="0">종목을 선택하세요.</option>
+                                <option value="1">왕복오래달리기</option>
+                                <option value="2">오래달리기걷기</option>
+                                <option value="3">스텝검사</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3 my-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="SchollClass">반</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 반을 입력하세요. " id="inputSchollClass"
+                                min="1" max="20" aria-label="SchollClass" required>
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="SchollClassNum">번호</label>
+                            </div>
+                            <input type="number" class="form-control" placeholder=" 번호를 입력하세요. "
+                                id="inputSchollClassNum" min="1" max="100" aria-label="SchollClassNum" required>
+                        </div>
+                    </div>
+
                     <!-- !Input for Long Round RUN -->
                     <div id="ageBox">
                         <h5 class="card-title">왕복오래달리기 (횟수) : </h5>
