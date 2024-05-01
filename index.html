@@ -606,82 +606,83 @@
                                 </div>
                             </div>
                         </div>
-                        <!--
+                    </div>
+                    <!--
                     <div id="settings d-flex justify-content-center align-content-center">
                         <button id="settingsBtn" class="link btn text-info text-muted font-weight-bolder"><i
                                 class="fa fa-plus"></i> Settings</button>
                     </div>
                     -->
-                        <!-- !More settings Content -->
-                        <div id="settingSection" style="display: none;">
-                            <div class="my-3 mx-auto" id="calculateType">
-                                <h5 class="d-block">Calculate : &nbsp;&nbsp;</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="calculate" id="bmr" value="bmr">
-                                    <label class="form-check-label font-weight-bolder text-muted" for="bmr"
-                                        aria-checked="true"><i class="fa fa-copy text-danger"></i> Calories &
-                                        BMR</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="calculate" id="bmi" value="bmi">
-                                    <label class="form-check-label font-weight-bolder text-muted" for="bmi"
-                                        aria-checked="true"><i class="fa fa-codepen text-warning"></i> Only BMI</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="calculate" id="all" checked
-                                        value="all">
-                                    <label class="form-check-label font-weight-bolder text-muted" for="all"><i
-                                            class="fa fa-check text-success"></i> All</label>
-                                </div>
+                    <!-- !More settings Content -->
+                    <div id="settingSection" style="display: none;">
+                        <div class="my-3 mx-auto" id="calculateType">
+                            <h5 class="d-block">Calculate : &nbsp;&nbsp;</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="bmr" value="bmr">
+                                <label class="form-check-label font-weight-bolder text-muted" for="bmr"
+                                    aria-checked="true"><i class="fa fa-copy text-danger"></i> Calories &
+                                    BMR</label>
                             </div>
-
-                            <!-- //results type -->
-                            <div class="my-3 mx-auto" id="resultType">
-                                <h5 class="d-block">Result in (for BMR) : &nbsp;&nbsp;</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="resultIn" id="calories"
-                                        value="calories" class="resultType" checked>
-                                    <label class="form-check-label font-weight-bolder text-muted" for="calories"
-                                        aria-checked="true"><i class="fa fa-pencil-square-o text-danger"></i>
-                                        Calories</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="resultIn" id="kiloJoules"
-                                        value="kiloJoules" class="resultType">
-                                    <label class="form-check-label font-weight-bolder text-muted" for="kiloJoules"
-                                        aria-checked="true"><i class="fa fa-pencil-square-o text-warning"></i>
-                                        KiloJoules</label>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="bmi" value="bmi">
+                                <label class="form-check-label font-weight-bolder text-muted" for="bmi"
+                                    aria-checked="true"><i class="fa fa-codepen text-warning"></i> Only BMI</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="calculate" id="all" checked
+                                    value="all">
+                                <label class="form-check-label font-weight-bolder text-muted" for="all"><i
+                                        class="fa fa-check text-success"></i> All</label>
                             </div>
                         </div>
 
-                        <!-- !Calculate & Reset button  -->
-                        <div class="my-3">
-                            <button class="btn btn-primary" type="submit" id="calculate">Calculate</button>
-                            <button class="btn btn-danger" type="reset"
-                                onclick="document.getElementById('inputForm').reset()">Reset</button>
+                        <!-- //results type -->
+                        <div class="my-3 mx-auto" id="resultType">
+                            <h5 class="d-block">Result in (for BMR) : &nbsp;&nbsp;</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultIn" id="calories"
+                                    value="calories" class="resultType" checked>
+                                <label class="form-check-label font-weight-bolder text-muted" for="calories"
+                                    aria-checked="true"><i class="fa fa-pencil-square-o text-danger"></i>
+                                    Calories</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resultIn" id="kiloJoules"
+                                    value="kiloJoules" class="resultType">
+                                <label class="form-check-label font-weight-bolder text-muted" for="kiloJoules"
+                                    aria-checked="true"><i class="fa fa-pencil-square-o text-warning"></i>
+                                    KiloJoules</label>
+                            </div>
                         </div>
-
-                        <!-- !Success Alert Section -->
-                        <div class="alert alert-success alert-dismissible sticky-top fade show" style="display: none;"
-                            id="successAlert" role="alert">
-                            <strong>평가가 완료되었습니다!</strong> <a href="#resultBox" class="link">결과물</a>을 확인해보세요.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <!-- !Error Alert Section -->
-                        <div class="alert alert-danger alert-dismissible sticky-top fade show" style="display: none;"
-                            id="errorAlert" role="alert">
-                            <strong>오류!</strong> 필수 입력 사항에 대해 입력해 주세요. (학교,학년,반,번호,키,몸무게)
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
                     </div>
+
+                    <!-- !Calculate & Reset button  -->
+                    <div class="my-3">
+                        <button class="btn btn-primary" type="submit" id="calculate">Calculate</button>
+                        <button class="btn btn-danger" type="reset"
+                            onclick="document.getElementById('inputForm').reset()">Reset</button>
+                    </div>
+
+                    <!-- !Success Alert Section -->
+                    <div class="alert alert-success alert-dismissible sticky-top fade show" style="display: none;"
+                        id="successAlert" role="alert">
+                        <strong>평가가 완료되었습니다!</strong> <a href="#resultBox" class="link">결과물</a>을 확인해보세요.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!-- !Error Alert Section -->
+                    <div class="alert alert-danger alert-dismissible sticky-top fade show" style="display: none;"
+                        id="errorAlert" role="alert">
+                        <strong>오류!</strong> 필수 입력 사항에 대해 입력해 주세요. (학교,학년,반,번호,키,몸무게)
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
                 </div>
+            </div>
     </form>
 
     <!-- !The result -->
@@ -689,8 +690,7 @@
         <div class="card-body">
             <h3 class="card-title text-center"><i class="fa fa-calculator"></i> 결과 기록지</h3>
             <hr>
-
-            <!-- !Navigator for results -->
+            <!-- 네비게이션 바 부분은 주석처리(!Navigator for results)
             <div id="navigator" style="display: none; opacity: 0.5;">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                     <a class="navbar-brand" href="#">Navigator</a>
@@ -733,7 +733,7 @@
                     </div>
                 </nav>
             </div>
-
+        -->
             <div id="result">
                 <p class="alert alert-warning d-block font-weight-bolder">검사결과는 여기에 나와요....</p>
             </div>

@@ -115,6 +115,7 @@ function Change_Alacrity() {
 
 //todo: 학년을 기준으로 추가 항목 생성하기
 let inputSchollYear = document.getElementById("inputSchollYear");
+/*
 function changeSchollYear() {
   if (inputSchollYear.value >= 4) {
     pushupSection.style.display = "block";
@@ -124,6 +125,7 @@ function changeSchollYear() {
     RbendingSection.style.display = "none";
   }
 }
+*/
 //TODO: Make a ifelse statement for the + Settings button to give the user more controlls
 /*
 let settingsBtn = document.getElementById("settingsBtn");
@@ -202,6 +204,8 @@ function darkMode() {
   var lis = document.querySelectorAll(".list-group-item");
   var navs = document.querySelectorAll("nav");
   var textMuted = document.querySelectorAll(".text-muted");
+  //최종보고서 id
+  let resultBox = document.getElementById("resultBox");
   //var table = document.querySelector("table");
   //table.classList.toggle("text-white");
   if (
@@ -413,7 +417,7 @@ function calculateHealth() {
       </div>`;
     setTimeout(() => {
       result.innerHTML = `
-            <h5 class="alert alert-danger d-block font-weight-bolder text-center">404 Error <i class="fa fa-exclamation-circle"></i> <br> No values has been given</h5>`;
+            <h5 class="alert alert-danger d-block  font-weight-semi bolder text-center">404 Error <i class="fa fa-exclamation-circle"></i> <br> No values has been given</h5>`;
     }, 5000);
   }
   //! When all values is correct
@@ -1703,40 +1707,40 @@ function calculateHealth() {
     } else {
       final_longrun = `
       <h5 class="d-inline-block">오래달리기걷기 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5> <hr>`;
 
       final_rbend = `       
       <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="r_bending">${Rbending} cm / ${rank_Rbending} 등급</h5> <hr>`;
 
       final_lbend = `
       <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="l_bending">${Lbending} cm / ${rank_Lbending} 등급</h5>
       <hr>`;
 
       final_pushup = `
       <h5 class="d-inline-block">팔굽혀펴기 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
       <hr>`;
 
       final_bmi = `
       <h5 class="d-inline-block">체지방률 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="bmi">${BMI} kg/m^2 / ${BMI_detail} 등급</h5>
       <hr>`;
 
       final_score = `
       <h5 class="d-inline-block">신체의 능력점수 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="bmi">${score} 점</h5>
       <hr>`;
       final_rank = `
       <h5 class="d-inline-block">신체의 능력등급 : </h5>
-      <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
           style="font-size: 1.5rem;" id="bmi">${rank} 등급</h5>
       <hr>`;
     }
@@ -1747,40 +1751,40 @@ function calculateHealth() {
     </div>
     <hr>
     <h5 class="d-inline-block">왕복오래달리기 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
         ${final_longrun}</h5>
     <h5 class="d-inline-block">스탭검사 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
     <hr>
     ${final_rbend}
     ${final_lbend}
     <h5 class="d-inline-block">종합유연성 기준표 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
     <hr>
     ${final_pushup}
     <h5 class="d-inline-block">윗몸말아올리기 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
     <hr>
     <h5 class="d-inline-block">오른손 악력 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
     <hr>
     <h5 class="d-inline-block">왼손 악력 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
     <hr>
     <h5 class="d-inline-block">50m 달리기 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
     <hr>
     <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
-    <h5 class="d-inline-block text-danger font-weight-bold position-relative float-right"
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
         style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
-    <hr>
+    
     ${final_bmi}
     ${final_score}
     ${final_rank}
@@ -1793,7 +1797,7 @@ function calculateHealth() {
     htmlForButtons = `
     <button class="btn btn-outline-warning" type="submit" onclick="location.reload();">Reload</button>
     <button class="btn btn-outline-success position-relative float-right" type="submit"
-    onclick="document.title='${SchollYear}학년_${SchollClass}반_${SchollClassNum}번_검사결과지';window.print();">Print/Save</button>`;
+    onclick="document.title='${SchollYear}학년_${SchollClass}반_${SchollClassNum}번_검사결과지'; startPrint('resultBox')">Print/Save</button>`;
     result.classList.add("d-none");
 
     //TODO: Add alert with success message when calculate will be finished
@@ -1816,15 +1820,35 @@ function calculateHealth() {
       calorieSection.innerHTML = htmlForCalories;
     }
     buttons.innerHTML = htmlForButtons;
-
+    /*
     //! Show the navigator
     let navigator = document.getElementById("navigator");
     if (calculateItemChecked === "all") {
       navigator.style.display = "block";
     } else {
       navigator.style.display = "none";
-    }
+    }*/
   } //End of the else statement
+}
+//todo: 원하는 부분 print
+var prtContent; // 프린트 하고 싶은 영역
+var initBody; // body 내용 원본
+
+// 프린트하고 싶은 영역의 id 값을 통해 출력 시작
+function startPrint(div_id) {
+  prtContent = document.getElementById(div_id);
+  window.onbeforeprint = beforePrint;
+  window.onafterprint = afterPrint;
+  window.print();
+}
+// 웹페이지 body 내용을 프린트하고 싶은 내용으로 교체
+function beforePrint() {
+  initBody = document.body.innerHTML;
+  document.body.innerHTML = prtContent.innerHTML;
+}
+// 프린트 후, 웹페이지 body 복구
+function afterPrint() {
+  document.body.innerHTML = initBody;
 }
 
 //TODO: A function for showing BMI chart
@@ -1842,7 +1866,7 @@ function showBMIStateTable() {
     BMITableBtn.innerHTML = "Show BMI Table";
   }
 }
-/* 현재는 상용하지 않음
+/* 현재는 사용하지 않음
 //!Add Event Listener For article Sections
 let readSectionBtn = document.getElementById("readSectionBtn");
 readSectionBtn.addEventListener("click", () => {
