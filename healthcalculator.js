@@ -49,19 +49,79 @@ let inputFoot = document.getElementById("inputFoot");
 let calculate = document.getElementById("calculate");
 let result = document.getElementById("result");
 
+//todo: 실제 진행한 측정종목들 선택하기
+// 심폐지구력 종목
+let Check_Endurance = document.getElementById("Check_Endurance");
+function Change_Endurance() {
+  if (Check_Endurance.value == 1) {
+    enduranceSection1.style.display = "block";
+    enduranceSection2.style.display = "none";
+    enduranceSection3.style.display = "none";
+  } else if (Check_Endurance.value == 2) {
+    enduranceSection1.style.display = "none";
+    enduranceSection2.style.display = "block";
+    enduranceSection3.style.display = "none";
+  } else {
+    enduranceSection1.style.display = "none";
+    enduranceSection2.style.display = "none";
+    enduranceSection3.style.display = "block";
+  }
+}
+// 유연성 종목
+let Check_Flexibility = document.getElementById("Check_Flexibility");
+function Change_Flexibility() {
+  if (Check_Flexibility.value == 1) {
+    RbendingSection1.style.display = "block";
+    RbendingSection2.style.display = "none";
+    LbendingSection1.style.display = "block";
+    LbendingSection2.style.display = "none";
+  } else {
+    RbendingSection1.style.display = "none";
+    RbendingSection2.style.display = "block";
+    LbendingSection1.style.display = "none";
+    LbendingSection2.style.display = "block";
+  }
+}
+
+// 근력근지구력 종목
+let Check_Muscular = document.getElementById("Check_Muscular");
+function Change_Muscular() {
+  if (Check_Muscular.value == 1) {
+    pushupSection.style.display = "block";
+    UpperBodySection.style.display = "none";
+    GripSection.style.display = "none";
+  } else if (Check_Muscular.value == 3) {
+    pushupSection.style.display = "none";
+    UpperBodySection.style.display = "none";
+    GripSection.style.display = "block";
+  } else {
+    pushupSection.style.display = "none";
+    UpperBodySection.style.display = "block";
+    GripSection.style.display = "none";
+  }
+}
+
+// 근력근지구력 종목
+let Check_Alacrity = document.getElementById("Check_Alacrity");
+function Change_Alacrity() {
+  if (Check_Alacrity.value == 2) {
+    RunSection.style.display = "none";
+    jumpmeterSection.style.display = "block";
+  } else {
+    RunSection.style.display = "block";
+    jumpmeterSection.style.display = "none";
+  }
+}
+
 //todo: 학년을 기준으로 추가 항목 생성하기
 let inputSchollYear = document.getElementById("inputSchollYear");
 function changeSchollYear() {
   if (inputSchollYear.value >= 4) {
     pushupSection.style.display = "block";
-    enduranceSection.style.display = "block";
     RbendingSection.style.display = "block";
-    LbendingSection.style.display = "block";
   } else {
     pushupSection.style.display = "none";
-    enduranceSection.style.display = "none";
     RbendingSection.style.display = "none";
-    LbendingSection.style.display = "none";
   }
 }
 //TODO: Make a ifelse statement for the + Settings button to give the user more controlls

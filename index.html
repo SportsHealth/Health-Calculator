@@ -180,8 +180,64 @@
                         </div>
                     </div>
 
+                    <div id="Test_Kind_Box">
+
+                        <h5 class="card-title">측정 종목들을 선택하세요. </h5>
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="Endurance_Box">심폐지구력</label>
+                            </div>
+                            <select class="custom-select" id="Check_Endurance" onchange="Change_Endurance()" required>
+                                <option value="0">종목을 선택하세요.</option>
+                                <option value="1">왕복오래달리기</option>
+                                <option value="2">오래달리기걷기</option>
+                                <option value="3">스탭검사</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="Flexibility_Box">유연성</label>
+                            </div>
+                            <select class="custom-select" id="Check_Flexibility" onchange="Change_Flexibility()"
+                                required>
+                                <option value="0">종목을 선택하세요.</option>
+                                <option value="1">앉아윗몸앞으로 굽히기</option>
+                                <option value="2">종합유연성</option>
+                            </select>
+
+                        </div>
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="Muscular_Box">근력근지구력</label>
+                            </div>
+                            <select class="custom-select" id="Check_Muscular" onchange="Change_Muscular()" required>
+                                <option value="0">종목을 선택하세요.</option>
+                                <option value="1">팔굽혀 펴기</option>
+                                <option value="2">윗몸 말아올리기</option>
+                                <option value="3">악력</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3 my-3">
+
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="Alacrity_Box">순발력</label>
+                            </div>
+                            <select class="custom-select" id="Check_Alacrity" onchange="Change_Alacrity()" required>
+                                <option value="0">종목을 선택하세요.</option>
+                                <option value="1">50m 달리기</option>
+                                <option value="2">제자리 멀리뛰기</option>
+                            </select>
+                        </div>
+
+                    </div>
+
                     <!-- !Input for Long Round RUN -->
-                    <div id="ageBox">
+
+                    <div id="enduranceSection1" style="display: block;">
                         <h5 class="card-title">왕복오래달리기 (횟수) : </h5>
                         <div class="input-group mb-3 my-3">
                             <div class="input-group-append valChanger">
@@ -200,7 +256,7 @@
                     </div>
 
                     <!-- 4-6 학년의 경우 추가 항목 신설 -->
-                    <div id="enduranceSection" style="display: none;">
+                    <div id="enduranceSection2" style="display: none;">
                         <h5 class="d-block">오래달리기걷기 (초) : &nbsp;&nbsp;</h5>
                         <div class="input-group mb-3 my-3" id="longrun">
                             <div class="input-group-append valChanger">
@@ -216,7 +272,8 @@
                                         class="fa fa-plus"></i></span>
                             </div>
                         </div>
-
+                    </div>
+                    <div id="enduranceSection3" style="display: none;">
                         <div class="input-group mb-3 my-3" id="step"></div>
                         <h5 class="d-block">스탭검사 : &nbsp;&nbsp;</h5>
                         <div class="input-group mb-3 my-3" id="step1">
@@ -270,7 +327,7 @@
                         <h6><b>오른쪽</b></h6>
 
                         <!-- 4-6 학년의 경우 추가 항목 신설 -->
-                        <div id="RbendingSection" style="display: none;">
+                        <div id="RbendingSection1" style="display: none;">
                             <h6 class="d-inline-block">앉아 윗몸 앞으로 굽히기 (cm) : &nbsp;&nbsp;</h6>
                             <div class="input-group mb-3 my-3" id="Rbending">
                                 <div class="input-group-append valChanger">
@@ -288,69 +345,72 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="RShoulder">
-                            <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_Success"
-                                    checked value="Shoulder_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                        <div id="RbendingSection2" style="display: block;">
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="RShoulder">
+                                <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_Success"
+                                        value="Shoulder_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_false"
+                                        checked value="Shoulder_false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RShoulder" id="Shoulder_false"
-                                    value="Shoulder_false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="Rbody">
+                                <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Rbody" id="body_Success"
+                                        value="body_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Rbody" id="body_false" checked
+                                        value="body_false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
+                            </div>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="RSide">
+                                <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RSide" id="Side_Success"
+                                        value="Side_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RSide" id="Side_false" checked
+                                        value="Side_false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
+                            </div>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="RLower">
+                                <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RLower" id="Lower_Success"
+                                        value="Lower_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="RLower" id="Lower_false" checked
+                                        value="Lower_false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="Rbody">
-                            <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Rbody" id="body_Success" checked
-                                    value="body_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Rbody" id="body_false"
-                                    value="body_false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
-                            </div>
-                        </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="RSide">
-                            <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RSide" id="Side_Success" checked
-                                    value="Side_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RSide" id="Side_false"
-                                    value="Side_false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
-                            </div>
-                        </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="RLower">
-                            <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RLower" id="Lower_Success" checked
-                                    value="Lower_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="RLower" id="Lower_false"
-                                    value="Lower_false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
-                            </div>
-                        </div>
+
                         <h6><b>왼쪽</b></h6>
                         <!-- 4-6 학년의 경우 추가 항목 신설 -->
-                        <div id="LbendingSection" style="display: none;">
+                        <div id="LbendingSection1" style="display: none;">
                             <h6 class="d-inline-block">앉아 윗몸 앞으로 굽히기 (cm) : &nbsp;&nbsp;</h6>
                             <div class="input-group mb-3 my-3" id="L_bending">
                                 <div class="input-group-append valChanger">
@@ -368,62 +428,67 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="LShoulder">
-                            <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_Success"
-                                    checked value="Shoulder_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+
+                        <div id="LbendingSection2" style="display: block;">
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="LShoulder">
+                                <h6 class="d-inline-block">어깨 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_Success"
+                                        value="Shoulder_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_false"
+                                        checked value="false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LShoulder" id="Shoulder_false"
-                                    value="false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="Lbody">
+                                <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Lbody" id="body_Success"
+                                        value="body_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Lbody" id="body_false" checked
+                                        value="false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="Lbody">
-                            <h6 class="d-inline-block">몸통 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Lbody" id="body_Success" checked
-                                    value="body_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="LSide">
+                                <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LSide" id="Side_Success"
+                                        value="Side_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LSide" id="Side_false" checked
+                                        value="false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Lbody" id="body_false" value="false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
-                            </div>
-                        </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="LSide">
-                            <h6 class="d-inline-block">옆구리 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LSide" id="Side_Success" checked
-                                    value="Side_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LSide" id="Side_false" value="false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
-                            </div>
-                        </div>
-                        <div class="my-3 mx-auto d-block" aria-required="true" id="LLower">
-                            <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LLower" id="Lower_Success" checked
-                                    value="Lower_Success">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
-                                    aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="LLower" id="Lower_false"
-                                    value="Lower_false">
-                                <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
-                                        class="fa fa-times-circle text-success"></i> 실패</label>
+                            <div class="my-3 mx-auto d-block" aria-required="true" id="LLower">
+                                <h6 class="d-inline-block">하체 : &nbsp;&nbsp;</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LLower" id="Lower_Success"
+                                        value="Lower_Success">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Lower_Success"
+                                        aria-checked="true"><i class="fa fa-check-circle text-danger"></i> 성공</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="LLower" id="Lower_false" checked
+                                        value="Lower_false">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="Lower_false"><i
+                                            class="fa fa-times-circle text-success"></i> 실패</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -449,7 +514,8 @@
 
 
                     <!-- !Input for Upper body -->
-                    <div id="ageBox">
+
+                    <div id="UpperBodySection" style="display: block;">
                         <h5 class="card-title">윗몸 말아올리기 (회) : </h5>
                         <div class="input-group mb-3 my-3">
                             <div class="input-group-append valChanger">
@@ -468,38 +534,42 @@
                     </div>
 
                     <!-- !State of health input -->
-                    <h5>악력</h5>
-                    <div class="mb-3">
-                        <div class="input-group is-valid">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="R_grip">오른쪽 1차</label>
+
+                    <div id="GripSection" style="display: none;">
+                        <h5>악력</h5>
+                        <div class="mb-3">
+                            <div class="input-group is-valid">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="R_grip">오른쪽 1차</label>
+                                </div>
+                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="R_grip_1"
+                                    aria-label="R_grip" required>
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="R_grip">오른쪽 2차</label>
+                                </div>
+                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="R_grip_2"
+                                    aria-label="R_grip" required>
                             </div>
-                            <input type="number" class="form-control" placeholder=" 1차 악력 " id="R_grip_1"
-                                aria-label="R_grip" required>
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="R_grip">오른쪽 2차</label>
-                            </div>
-                            <input type="number" class="form-control" placeholder=" 2차 악력 " id="R_grip_2"
-                                aria-label="R_grip" required>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="input-group is-valid">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="L_grip">왼쪽 1차 </label>
+                        <div class="mb-3">
+                            <div class="input-group is-valid">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="L_grip">왼쪽 1차 </label>
+                                </div>
+                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="L_grip_1"
+                                    aria-label="R_grip" required>
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="L_grip">왼쪽 2차 </label>
+                                </div>
+                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="L_grip_2"
+                                    aria-label="R_grip" required>
                             </div>
-                            <input type="number" class="form-control" placeholder=" 1차 악력 " id="L_grip_1"
-                                aria-label="R_grip" required>
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="L_grip">왼쪽 2차 </label>
-                            </div>
-                            <input type="number" class="form-control" placeholder=" 2차 악력 " id="L_grip_2"
-                                aria-label="R_grip" required>
                         </div>
                     </div>
 
+
                     <!-- !Input for 50M Run -->
-                    <div id="ageBox">
+                    <div id="RunSection" style="display: block;">
                         <h5 class="card-title">50m 달리기 (초) : </h5>
                         <div class="input-group mb-3 my-3">
                             <div class="input-group-append valChanger">
@@ -517,99 +587,101 @@
                         </div>
                     </div>
 
-                    <!-- !Input for jump meter -->
-                    <div id="ageBox">
-                        <h5 class="card-title">제자리 멀리뛰기 (cm) : </h5>
-                        <div class="input-group mb-3 my-3">
-                            <div class="input-group-append valChanger">
-                                <span class="input-group-text" style="cursor: pointer;"
-                                    onclick="document.getElementById('inputjumpmeter').value--"><i
-                                        class="fa fa-minus"></i></span>
-                            </div>
-                            <input type="number" class="form-control" placeholder="멀리뛰기 거리를 입력하세요." id="inputjumpmeter"
-                                min="0" max="300" aria-label="jumpmeter" required>
-                            <div class="input-group-prepend valChanger">
-                                <span class="input-group-text" style="cursor: pointer;"
-                                    onclick="document.getElementById('inputjumpmeter').value++"><i
-                                        class="fa fa-plus"></i></span>
+                    <div id="jumpmeterSection" style="display: none;">
+                        <!-- !Input for jump meter -->
+                        <div id="ageBox">
+                            <h5 class="card-title">제자리 멀리뛰기 (cm) : </h5>
+                            <div class="input-group mb-3 my-3">
+                                <div class="input-group-append valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputjumpmeter').value--"><i
+                                            class="fa fa-minus"></i></span>
+                                </div>
+                                <input type="number" class="form-control" placeholder="멀리뛰기 거리를 입력하세요."
+                                    id="inputjumpmeter" min="0" max="300" aria-label="jumpmeter" required>
+                                <div class="input-group-prepend valChanger">
+                                    <span class="input-group-text" style="cursor: pointer;"
+                                        onclick="document.getElementById('inputjumpmeter').value++"><i
+                                            class="fa fa-plus"></i></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--
+                        <!--
                     <div id="settings d-flex justify-content-center align-content-center">
                         <button id="settingsBtn" class="link btn text-info text-muted font-weight-bolder"><i
                                 class="fa fa-plus"></i> Settings</button>
                     </div>
                     -->
-                    <!-- !More settings Content -->
-                    <div id="settingSection" style="display: none;">
-                        <div class="my-3 mx-auto" id="calculateType">
-                            <h5 class="d-block">Calculate : &nbsp;&nbsp;</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="calculate" id="bmr" value="bmr">
-                                <label class="form-check-label font-weight-bolder text-muted" for="bmr"
-                                    aria-checked="true"><i class="fa fa-copy text-danger"></i> Calories & BMR</label>
+                        <!-- !More settings Content -->
+                        <div id="settingSection" style="display: none;">
+                            <div class="my-3 mx-auto" id="calculateType">
+                                <h5 class="d-block">Calculate : &nbsp;&nbsp;</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="calculate" id="bmr" value="bmr">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="bmr"
+                                        aria-checked="true"><i class="fa fa-copy text-danger"></i> Calories &
+                                        BMR</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="calculate" id="bmi" value="bmi">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="bmi"
+                                        aria-checked="true"><i class="fa fa-codepen text-warning"></i> Only BMI</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="calculate" id="all" checked
+                                        value="all">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="all"><i
+                                            class="fa fa-check text-success"></i> All</label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="calculate" id="bmi" value="bmi">
-                                <label class="form-check-label font-weight-bolder text-muted" for="bmi"
-                                    aria-checked="true"><i class="fa fa-codepen text-warning"></i> Only BMI</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="calculate" id="all" checked
-                                    value="all">
-                                <label class="form-check-label font-weight-bolder text-muted" for="all"><i
-                                        class="fa fa-check text-success"></i> All</label>
+
+                            <!-- //results type -->
+                            <div class="my-3 mx-auto" id="resultType">
+                                <h5 class="d-block">Result in (for BMR) : &nbsp;&nbsp;</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="resultIn" id="calories"
+                                        value="calories" class="resultType" checked>
+                                    <label class="form-check-label font-weight-bolder text-muted" for="calories"
+                                        aria-checked="true"><i class="fa fa-pencil-square-o text-danger"></i>
+                                        Calories</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="resultIn" id="kiloJoules"
+                                        value="kiloJoules" class="resultType">
+                                    <label class="form-check-label font-weight-bolder text-muted" for="kiloJoules"
+                                        aria-checked="true"><i class="fa fa-pencil-square-o text-warning"></i>
+                                        KiloJoules</label>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- //results type -->
-                        <div class="my-3 mx-auto" id="resultType">
-                            <h5 class="d-block">Result in (for BMR) : &nbsp;&nbsp;</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="resultIn" id="calories"
-                                    value="calories" class="resultType" checked>
-                                <label class="form-check-label font-weight-bolder text-muted" for="calories"
-                                    aria-checked="true"><i class="fa fa-pencil-square-o text-danger"></i>
-                                    Calories</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="resultIn" id="kiloJoules"
-                                    value="kiloJoules" class="resultType">
-                                <label class="form-check-label font-weight-bolder text-muted" for="kiloJoules"
-                                    aria-checked="true"><i class="fa fa-pencil-square-o text-warning"></i>
-                                    KiloJoules</label>
-                            </div>
+                        <!-- !Calculate & Reset button  -->
+                        <div class="my-3">
+                            <button class="btn btn-primary" type="submit" id="calculate">Calculate</button>
+                            <button class="btn btn-danger" type="reset"
+                                onclick="document.getElementById('inputForm').reset()">Reset</button>
                         </div>
-                    </div>
 
-                    <!-- !Calculate & Reset button  -->
-                    <div class="my-3">
-                        <button class="btn btn-primary" type="submit" id="calculate">Calculate</button>
-                        <button class="btn btn-danger" type="reset"
-                            onclick="document.getElementById('inputForm').reset()">Reset</button>
-                    </div>
+                        <!-- !Success Alert Section -->
+                        <div class="alert alert-success alert-dismissible sticky-top fade show" style="display: none;"
+                            id="successAlert" role="alert">
+                            <strong>평가가 완료되었습니다!</strong> <a href="#resultBox" class="link">결과물</a>을 확인해보세요.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <!-- !Success Alert Section -->
-                    <div class="alert alert-success alert-dismissible sticky-top fade show" style="display: none;"
-                        id="successAlert" role="alert">
-                        <strong>평가가 완료되었습니다!</strong> <a href="#resultBox" class="link">결과물</a>을 확인해보세요.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                        <!-- !Error Alert Section -->
+                        <div class="alert alert-danger alert-dismissible sticky-top fade show" style="display: none;"
+                            id="errorAlert" role="alert">
+                            <strong>오류!</strong> 필수 입력 사항에 대해 입력해 주세요. (학교,학년,반,번호,키,몸무게)
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <!-- !Error Alert Section -->
-                    <div class="alert alert-danger alert-dismissible sticky-top fade show" style="display: none;"
-                        id="errorAlert" role="alert">
-                        <strong>오류!</strong> 필수 입력 사항에 대해 입력해 주세요. (학교,학년,반,번호,키,몸무게)
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
-
                 </div>
-            </div>
     </form>
 
     <!-- !The result -->
