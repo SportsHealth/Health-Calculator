@@ -51,16 +51,6 @@ let result = document.getElementById("result");
 
 //todo: 학년을 기준으로 추가 항목 생성하기
 let inputSchollYear = document.getElementById("inputSchollYear");
-
-//todo: 심폐지구력 종목 선택
-let input_endurance_event = document.getElementById("input_endurance_event");
-
-function endurance_event() {
-  if (input_endurance_event.value == 1) {
-  } else if (input_endurance_event.value == 2) {
-  } else {
-  }
-}
 function changeSchollYear() {
   if (inputSchollYear.value >= 4) {
     pushupSection.style.display = "block";
