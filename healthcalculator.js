@@ -335,7 +335,16 @@ function calculateHealth() {
   );
   //TODO: Add a verification for calculation
 
-  if (age == 0 || height == null || height === undefined || weight == 0) {
+  if (
+    age == 0 ||
+    height == null ||
+    height === undefined ||
+    weight == 0 ||
+    EName == 0 ||
+    SchollYear == 0 ||
+    SchollClass == 0 ||
+    SchollClassNum == 0
+  ) {
     errorAlert.style.display = "block";
     successAlert.style.display = "none";
     result.innerHTML = `
