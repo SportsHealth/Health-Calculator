@@ -115,17 +115,17 @@ function Change_Alacrity() {
 
 //todo: 학년을 기준으로 추가 항목 생성하기
 let inputSchollYear = document.getElementById("inputSchollYear");
-/*
+
 function changeSchollYear() {
   if (inputSchollYear.value >= 4) {
-    pushupSection.style.display = "block";
-    RbendingSection.style.display = "block";
-  } else {
-    pushupSection.style.display = "none";
-    RbendingSection.style.display = "none";
+    //Check_Endurance.style.display = "block";
+    //RbendingSection.style.display = "block";
+    document.getElementById("Check_Endurance_1").style.display = "block";
+    document.getElementById("Check_Flexibility_1").style.display = "block";
+    document.getElementById("Check_Muscular_1").style.display = "block";
   }
 }
-*/
+
 //TODO: Make a ifelse statement for the + Settings button to give the user more controlls
 /*
 let settingsBtn = document.getElementById("settingsBtn");
@@ -1695,6 +1695,8 @@ function calculateHealth() {
     let final_bmi;
     let final_score;
     let final_rank;
+    let final_step;
+    let final_pushup;
 
     if (SchollYear <= 4) {
       final_longrun = ``;
@@ -1704,29 +1706,8 @@ function calculateHealth() {
       final_pushup = ``;
       final_score = ``;
       final_rank = ``;
+      final_step = ``;
     } else {
-      final_longrun = `
-      <h5 class="d-inline-block">오래달리기걷기 : </h5>
-      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-          style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5> <hr>`;
-
-      final_rbend = `       
-      <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
-      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-          style="font-size: 1.5rem;" id="r_bending">${Rbending} cm / ${rank_Rbending} 등급</h5> <hr>`;
-
-      final_lbend = `
-      <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
-      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-          style="font-size: 1.5rem;" id="l_bending">${Lbending} cm / ${rank_Lbending} 등급</h5>
-      <hr>`;
-
-      final_pushup = `
-      <h5 class="d-inline-block">팔굽혀펴기 : </h5>
-      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-          style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
-      <hr>`;
-
       final_bmi = `
       <h5 class="d-inline-block">체지방률 : </h5>
       <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
@@ -1745,46 +1726,146 @@ function calculateHealth() {
       <hr>`;
     }
 
-    htmlForCalories = `
-    <div class="my-3 d-flex justify-content-center align-content-center flex-column">
+    // 심폐지구력 측정 종목에 따른 평가 안내
+    let final_round_run;
+
+    if (Check_Endurance.value == 1) {
+      final_round_run = `
+      <h5 class="d-inline-block">왕복오래달리기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5> <hr>`;
+      final_longrun = ``;
+      final_step = ``;
+    } else if (Check_Endurance.value == 2) {
+      final_round_run = ``;
+      final_step = ``;
+
+      final_longrun = `
+      <h5 class="d-inline-block">오래달리기걷기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="longRun">${longrun} 초 / ${rank_longrun} 등급</h5> <hr>`;
+    } else if (Check_Endurance.value == 3) {
+      final_round_run = ``;
+      final_longrun = ``;
+
+      final_step = `
+      <h5 class="d-inline-block">스탭검사 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+        style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
+      <hr>`;
+    } else {
+      final_round_run = ``;
+      final_longrun = ``;
+      final_step = ``;
+    }
+
+    // 유연성 측정 종목에 따른 평가 안내
+    let final_rank_flexibiliy;
+
+    if (Check_Flexibility.value == 1) {
+      final_rank_flexibiliy = `
+      <h5 class="d-inline-block">종합유연성 기준표 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+        style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
+    <hr>
+      `;
+      final_rbend = ``;
+      final_lbend = ``;
+    } else if (Check_Flexibility.value == 2) {
+      final_rbend = `       
+      <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="r_bending">${Rbending} cm / ${rank_Rbending} 등급</h5> <hr>`;
+
+      final_lbend = `
+      <h5 class="d-inline-block">왼쪽 앉아윗몸앞으로 굽히기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="l_bending">${Lbending} cm / ${rank_Lbending} 등급</h5>
+      <hr>`;
+      final_rank_flexibiliy = ``;
+    } else {
+      final_rank_flexibiliy = ``;
+      final_rbend = ``;
+      final_lbend = ``;
+    }
+
+    // 근력근지구력 측정 종목에 따른 평가 안내
+    let final_Upperbody;
+    let final_grip;
+
+    if (Check_Muscular.value == 1) {
+      final_pushup = `
+      <h5 class="d-inline-block">팔굽혀펴기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="pushup">${pushup} 회</h5>
+      <hr>`;
+      final_grip = ``;
+      final_Upperbody = ``;
+    } else if (Check_Muscular.value == 2) {
+      final_pushup = ``;
+      final_Upperbody = `<h5 class="d-inline-block">윗몸말아올리기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
+      <hr>
+      `;
+      final_grip = ``;
+    } else if (Check_Muscular.value == 3) {
+      final_grip = `<h5 class="d-inline-block">오른손 악력 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
+      <hr>
+      <h5 class="d-inline-block">왼손 악력 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
+      <hr>`;
+      final_pushup = ``;
+      final_Upperbody = ``;
+    } else {
+      final_grip = ``;
+      final_pushup = ``;
+      final_Upperbody = ``;
+    }
+
+    // 순발력 측정 종목에 따른 평가 안내
+    let final_run50m;
+    let final_jumpingmeter;
+
+    if (Check_Alacrity.value == 1) {
+      final_run50m = `<h5 class="d-inline-block">50m 달리기 : </h5>
+      <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+          style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
+      <hr>`;
+      final_jumpingmeter = ``;
+    } else if (Check_Alacrity.value == 2) {
+      final_jumpingmeter = `<h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
+    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
+        style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
+        <hr>`;
+      final_run50m = ``;
+    } else {
+      final_jumpingmeter = ``;
+      final_run50m = ``;
+    }
+
+    htmlForCalories = `<div class="my-3 d-flex justify-content-center align-content-center flex-column">
     <h5 class="card-header text-center my-3">건강검사 실시 현황</h5>
     </div>
     <hr>
-    <h5 class="d-inline-block">왕복오래달리기 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="RoundRun">${RoundRun} 회 / ${rank_roundrun} 등급</h5><hr>
-        ${final_longrun}</h5>
-    <h5 class="d-inline-block">스탭검사 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="stepcheck">검사 계산을 어떻게 하는건가요.. ㅠㅠ</h5>
-    <hr>
+    ${final_longrun}
+    ${final_round_run}
+    ${final_step}
+
     ${final_rbend}
     ${final_lbend}
-    <h5 class="d-inline-block">종합유연성 기준표 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="flexibility">${rank_flexibiliy} 점 / ${final_rank_flexibiliyty} 등급</h5>
-    <hr>
+    ${final_rank_flexibiliy}
+
     ${final_pushup}
-    <h5 class="d-inline-block">윗몸말아올리기 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="Upperbody">${Upperbody} 점 / ${rank_Upperbody} 등급</h5>
-    <hr>
-    <h5 class="d-inline-block">오른손 악력 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="rgrip">${rgrip} kg / ${rank_rgrip} 등급</h5>
-    <hr>
-    <h5 class="d-inline-block">왼손 악력 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="lgrip">${lgrip} kg / ${rank_lgrip} 등급</h5>
-    <hr>
-    <h5 class="d-inline-block">50m 달리기 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="run50m">${run50m} 초 / ${rank_run50m} 등급</h5>
-    <hr>
-    <h5 class="d-inline-block">제자리 멀리뛰기 : </h5>
-    <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
-        style="font-size: 1.5rem;" id="jumpingmeter">${jumpingmeter} cm / ${rank_jumpingmeter} 등급</h5>
-    
+    ${final_Upperbody}
+    ${final_grip}
+
+    ${final_jumpingmeter}
+    ${final_run50m}
+        
     ${final_bmi}
     ${final_score}
     ${final_rank}

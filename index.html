@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="healthcalculator.css">
     <title>Health Calculator</title>
+
+
 </head>
 
 <body>
@@ -179,7 +181,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div id="Test_Kind_Box">
 
                         <h5 class="card-title">측정 종목들을 선택하세요. </h5>
@@ -191,7 +192,7 @@
                             <select class="custom-select" id="Check_Endurance" onchange="Change_Endurance()" required>
                                 <option value="0">종목을 선택하세요.</option>
                                 <option value="1">왕복오래달리기</option>
-                                <option value="2">오래달리기걷기</option>
+                                <option id="Check_Endurance_1" value="2" style="display: none;">오래달리기걷기</option>
                                 <option value="3">스탭검사</option>
                             </select>
                         </div>
@@ -203,7 +204,7 @@
                             <select class="custom-select" id="Check_Flexibility" onchange="Change_Flexibility()"
                                 required>
                                 <option value="0">종목을 선택하세요.</option>
-                                <option value="1">앉아윗몸앞으로 굽히기</option>
+                                <option id="Check_Flexibility_1" value="1" style="display: none;">앉아윗몸앞으로 굽히기</option>
                                 <option value="2">종합유연성</option>
                             </select>
 
@@ -215,7 +216,7 @@
                             </div>
                             <select class="custom-select" id="Check_Muscular" onchange="Change_Muscular()" required>
                                 <option value="0">종목을 선택하세요.</option>
-                                <option value="1">팔굽혀 펴기</option>
+                                <option id="Check_Muscular_1" value="1" style="display: none;">팔굽혀 펴기</option>
                                 <option value="2">윗몸 말아올리기</option>
                                 <option value="3">악력</option>
                             </select>
