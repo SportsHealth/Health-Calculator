@@ -266,7 +266,7 @@
                                         class="fa fa-minus"></i></span>
                             </div>
                             <input type="number" class="form-control" placeholder="오래달리기걷기 시간을 입력하세요." id="inputlongrun"
-                                defaultValue="-1" min="-1" max="200" aria-label="longrun" required>
+                                defaultValue="999" min="120" max="999" aria-label="longrun" required>
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('inputlongrun').value++"><i
@@ -543,13 +543,13 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="R_grip">오른쪽 1차</label>
                                 </div>
-                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="R_grip_1"
-                                    aria-label="R_grip" required>
+                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="R_grip_1" min="0"
+                                    max=200" aria-label="R_grip" required>
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="R_grip">오른쪽 2차</label>
                                 </div>
-                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="R_grip_2"
-                                    aria-label="R_grip" required>
+                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="R_grip_2" min="0"
+                                    max=200" aria-label="R_grip" required>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -557,13 +557,13 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="L_grip">왼쪽 1차 </label>
                                 </div>
-                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="L_grip_1"
-                                    aria-label="R_grip" required>
+                                <input type="number" class="form-control" placeholder=" 1차 악력 " id="L_grip_1" min="0"
+                                    max=200" aria-label="R_grip" required>
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="L_grip">왼쪽 2차 </label>
                                 </div>
-                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="L_grip_2"
-                                    aria-label="R_grip" required>
+                                <input type="number" class="form-control" placeholder=" 2차 악력 " id="L_grip_2" min="0"
+                                    max=200" aria-label="R_grip" required>
                             </div>
                         </div>
                     </div>
@@ -579,7 +579,7 @@
                                         class="fa fa-minus"></i></span>
                             </div>
                             <input type="number" class="form-control" placeholder="50m 달리기 시간을 입력하세요." id="input50mrun"
-                                min="0" max="200" aria-label="50mrun" required>
+                                min="5" max="200" aria-label="50mrun" required>
                             <div class="input-group-prepend valChanger">
                                 <span class="input-group-text" style="cursor: pointer;"
                                     onclick="document.getElementById('input50mrun').value++"><i

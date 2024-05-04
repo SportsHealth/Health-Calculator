@@ -288,10 +288,10 @@ function copyCalorie() {
 for (const item of heightRadios) {
   item.addEventListener("click", (e) => {
     if (e.target.value === "centimeter") {
-      inchBox.style.display = "none";
+      //inchBox.style.display = "none";
       centimeterBox.style.display = "block";
     } else if (e.target.value === "inches&foot") {
-      inchBox.style.display = "block";
+      //inchBox.style.display = "block";
       centimeterBox.style.display = "none";
     }
   });
@@ -360,10 +360,10 @@ function calculateHealth() {
   let pushup = Number(inputpushup.value);
   let Upperbody = Number(inputUpperbody.value);
 
-  let RR_grip_1 = Number(R_grip_1.value).toFixed(2);
-  let RR_grip_2 = Number(R_grip_2.value).toFixed(2);
-  let LL_grip_1 = Number(L_grip_1.value).toFixed(2);
-  let LL_grip_2 = Number(L_grip_2.value).toFixed(2);
+  let RR_grip_1 = Number(R_grip_1.value);
+  let RR_grip_2 = Number(R_grip_2.value);
+  let LL_grip_1 = Number(L_grip_1.value);
+  let LL_grip_2 = Number(L_grip_2.value);
 
   let run50m = Number(input50mrun.value).toFixed(2);
   let jumpingmeter = Number(jumpmeter.value).toFixed(1);
@@ -438,6 +438,38 @@ function calculateHealth() {
     console.log(`Your BMR ${BMR}`);
 
     //왕복오래 달리기 기준표
+
+    var score_roundrun = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_roundrun_4 = [
+      150, 102, 100, 99, 97, 95, 88, 82, 75, 68, 62, 56, 50, 44, 39, 35, 30, 25,
+      23, 21, 19,
+    ];
+    var s_m_roundrun_5 = [
+      150, 106, 104, 103, 101, 99, 92, 86, 79, 72, 66, 61, 55, 49, 44, 39, 33,
+      28, 26, 24, 22,
+    ];
+    var s_m_roundrun_6 = [
+      150, 111, 109, 107, 105, 103, 97, 90, 84, 77, 71, 65, 59, 53, 48, 42, 37,
+      31, 28, 25, 22,
+    ];
+
+    var s_w_roundrun_4 = [
+      150, 99, 93, 88, 82, 76, 71, 66, 61, 56, 52, 48, 43, 39, 34, 30, 25, 20,
+      19, 17, 16,
+    ];
+    var s_w_roundrun_5 = [
+      150, 103, 98, 94, 89, 84, 79, 73, 68, 62, 58, 53, 49, 44, 39, 33, 28, 22,
+      21, 19, 18,
+    ];
+    var s_w_roundrun_6 = [
+      150, 111, 106, 102, 97, 92, 86, 80, 74, 68, 63, 59, 54, 49, 43, 37, 30,
+      24, 23, 21, 20,
+    ];
+
+    let final_score_roundrun;
     let rank_roundrun;
     if (gender === "male") {
       if (SchollYear == 1) {
@@ -488,6 +520,12 @@ function calculateHealth() {
         } else {
           rank_roundrun = 1;
         }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_m_roundrun_4[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
+        }
       } else if (SchollYear == 5) {
         if (RoundRun <= 28) {
           rank_roundrun = 5;
@@ -500,6 +538,12 @@ function calculateHealth() {
         } else {
           rank_roundrun = 1;
         }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_m_roundrun_5[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (RoundRun <= 31) {
           rank_roundrun = 5;
@@ -511,6 +555,12 @@ function calculateHealth() {
           rank_roundrun = 2;
         } else {
           rank_roundrun = 1;
+        }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_m_roundrun_6[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
         }
       }
     } else {
@@ -562,6 +612,12 @@ function calculateHealth() {
         } else {
           rank_roundrun = 1;
         }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_w_roundrun_4[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
+        }
       } else if (SchollYear == 5) {
         if (RoundRun <= 22) {
           rank_roundrun = 5;
@@ -573,6 +629,12 @@ function calculateHealth() {
           rank_roundrun = 2;
         } else {
           rank_roundrun = 1;
+        }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_w_roundrun_5[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
         }
       } else if (SchollYear == 6) {
         if (RoundRun <= 24) {
@@ -586,11 +648,41 @@ function calculateHealth() {
         } else {
           rank_roundrun = 1;
         }
+        // 왕복오래달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (RoundRun < s_w_roundrun_6[i]) {
+            final_score_roundrun = score_roundrun[i];
+          }
+        }
       }
     }
 
     //오래달리기걷기
+    var score_longrun = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_longrun_5 = [
+      120, 269, 272, 276, 279, 282, 293, 304, 314, 325, 346, 368, 389, 410, 428,
+      445, 463, 480, 533, 587, 640,
+    ];
+    var s_m_longrun_6 = [
+      120, 244, 246, 248, 249, 251, 267, 283, 299, 315, 331, 348, 364, 380, 398,
+      415, 433, 450, 496, 541, 587,
+    ];
+
+    var s_w_longrun_5 = [
+      120, 269, 277, 285, 292, 300, 315, 330, 345, 360, 381, 401, 422, 442, 457,
+      472, 487, 502, 548, 594, 640,
+    ];
+    var s_w_longrun_6 = [
+      120, 244, 258, 272, 286, 300, 314, 327, 341, 354, 373, 392, 411, 430, 443,
+      455, 468, 480, 516, 551, 587,
+    ];
+
+    let final_score_longrun;
     let rank_longrun;
+
     if (gender === "male") {
       if (SchollYear <= 4) {
         rank_longrun = "대상이 아닙니다.(5학년 ~ 6학년)";
@@ -606,6 +698,12 @@ function calculateHealth() {
         } else {
           rank_longrun = 5;
         }
+        // 오래달리기걷기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (longrun > s_m_longrun_5[i]) {
+            final_score_longrun = score_longrun[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (longrun <= 241) {
           rank_longrun = 1;
@@ -617,6 +715,12 @@ function calculateHealth() {
           rank_longrun = 4;
         } else {
           rank_longrun = 5;
+        }
+        // 오래달리기걷기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (longrun > s_m_longrun_6[i]) {
+            final_score_longrun = score_longrun[i];
+          }
         }
       }
     } else {
@@ -634,6 +738,12 @@ function calculateHealth() {
         } else {
           rank_longrun = 5;
         }
+        // 오래달리기걷기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (longrun > s_w_longrun_5[i]) {
+            final_score_longrun = score_longrun[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (longrun <= 299) {
           rank_longrun = 1;
@@ -646,14 +756,46 @@ function calculateHealth() {
         } else {
           rank_longrun = 5;
         }
+        // 오래달리기걷기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (longrun > s_w_longrun_6[i]) {
+            final_score_longrun = score_longrun[i];
+          }
+        }
       }
     }
     //앉아윗몸앞으로 굽히기
+
+    var score_Rbending = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_Rbending_5 = [
+      50, 17.9, 15.4, 12.9, 10.4, 7.9, 7.2, 6.4, 5.7, 4.9, 3.9, 2.9, 1.9, 0.9,
+      -0.4, -1.6, -2.9, -4.1, -4.4, -4.8, -5.1,
+    ];
+    var s_m_Rbending_6 = [
+      50, 17.9, 15.4, 12.9, 10.4, 7.9, 7.2, 6.4, 5.7, 4.9, 3.9, 2.9, 1.9, 0.9,
+      -0.4, -1.6, -2.9, -4.1, -4.4, -4.8, -5.1,
+    ];
+
+    var s_w_Rbending_5 = [
+      50, 21.9, 18.9, 15.9, 12.9, 9.9, 9.2, 8.4, 7.7, 6.9, 6.4, 5.9, 5.4, 4.9,
+      3.9, 2.9, 1.9, 0.9, 0.6, 0.2, -0.1,
+    ];
+    var s_w_Rbending_6 = [
+      50, 25.9, 22.9, 19.9, 16.9, 13.9, 12.9, 11.9, 10.9, 9.9, 8.7, 7.4, 6.2,
+      4.9, 4.2, 3.4, 2.7, 1.9, 1.2, 0.6, -0.1,
+    ];
+
+    let final_score_Rbending;
+    let final_score_Lbending;
+
     let rank_Rbending;
     if (gender === "male") {
       if (SchollYear <= 4) {
         rank_Rbending = "대상이 아닙니다.(5학년 ~ 6학년)";
-      } else {
+      } else if (SchollYear == 5) {
         if (Rbending <= -4.1) {
           rank_Rbending = 5;
         } else if (Rbending <= 0.9) {
@@ -664,6 +806,30 @@ function calculateHealth() {
           rank_Rbending = 2;
         } else {
           rank_Rbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Rbending < s_m_Rbending_5[i]) {
+            final_score_Rbending = score_Rbending[i];
+          }
+        }
+      } else if (SchollYear == 6) {
+        if (Rbending <= -4.1) {
+          rank_Rbending = 5;
+        } else if (Rbending <= 0.9) {
+          rank_Rbending = 4;
+        } else if (Rbending <= 4.9) {
+          rank_Rbending = 3;
+        } else if (Rbending <= 7.9) {
+          rank_Rbending = 2;
+        } else {
+          rank_Rbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Rbending < s_m_Rbending_6[i]) {
+            final_score_Rbending = score_Rbending[i];
+          }
         }
       }
     } else {
@@ -681,6 +847,13 @@ function calculateHealth() {
         } else {
           rank_Rbending = 1;
         }
+
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Rbending < s_w_Rbending_5[i]) {
+            final_score_Rbending = score_Rbending[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (Rbending <= 1.9) {
           rank_Rbending = 5;
@@ -692,6 +865,12 @@ function calculateHealth() {
           rank_Rbending = 2;
         } else {
           rank_Rbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Rbending < s_w_Rbending_6[i]) {
+            final_score_Rbending = score_Rbending[i];
+          }
         }
       }
     }
@@ -700,7 +879,7 @@ function calculateHealth() {
     if (gender === "male") {
       if (SchollYear <= 4) {
         rank_Lbending = "대상이 아닙니다.(5학년 ~ 6학년)";
-      } else {
+      } else if (SchollYear == 5) {
         if (Rbending <= -4.1) {
           rank_Lbending = 5;
         } else if (Rbending <= 0.9) {
@@ -711,6 +890,30 @@ function calculateHealth() {
           rank_Lbending = 2;
         } else {
           rank_Lbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Lbending < s_m_Rbending_5[i]) {
+            final_score_Lbending = score_Rbending[i];
+          }
+        }
+      } else if (SchollYear == 6) {
+        if (Rbending <= -4.1) {
+          rank_Lbending = 5;
+        } else if (Rbending <= 0.9) {
+          rank_Lbending = 4;
+        } else if (Rbending <= 4.9) {
+          rank_Lbending = 3;
+        } else if (Rbending <= 7.9) {
+          rank_Lbending = 2;
+        } else {
+          rank_Lbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Lbending < s_m_Rbending_6[i]) {
+            final_score_Lbending = score_Rbending[i];
+          }
         }
       }
     } else {
@@ -728,6 +931,12 @@ function calculateHealth() {
         } else {
           rank_Lbending = 1;
         }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Lbending < s_w_Rbending_5[i]) {
+            final_score_Lbending = score_Rbending[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (Rbending <= 1.9) {
           rank_Lbending = 5;
@@ -739,6 +948,12 @@ function calculateHealth() {
           rank_Lbending = 2;
         } else {
           rank_Lbending = 1;
+        }
+        // 앉아윗몸앞으로굽히기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Lbending < s_w_Rbending_6[i]) {
+            final_score_Lbending = score_Rbending[i];
+          }
         }
       }
     }
@@ -769,6 +984,7 @@ function calculateHealth() {
     if (L_Lower == "Lower_Success") {
       rank_flexibiliy += 1;
     }
+
     let final_rank_flexibiliyty;
     if (rank_flexibiliy <= 4) {
       final_rank_flexibiliyty = 5;
@@ -782,7 +998,59 @@ function calculateHealth() {
       final_rank_flexibiliyty = 1;
     }
 
+    let final_score_flexibility;
+    if (rank_flexibiliy <= 1) {
+      final_score_flexibility = 0;
+    } else if (rank_flexibiliy <= 2) {
+      final_score_flexibility = 1;
+    } else if (rank_flexibiliy <= 3) {
+      final_score_flexibility = 2;
+    } else if (rank_flexibiliy <= 4) {
+      final_score_flexibility = 3;
+    } else if (rank_flexibiliy <= 5) {
+      final_score_flexibility = 7;
+    } else if (rank_flexibiliy <= 6) {
+      final_score_flexibility = 11;
+    } else if (rank_flexibiliy <= 7) {
+      final_score_flexibility = 15;
+    } else {
+      final_score_flexibility = 20;
+    }
+
     //윗몸 말아올리기
+
+    var score_upperbody = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_upperbody_4 = [
+      200, 118, 108, 99, 89, 79, 69, 59, 49, 39, 35, 30, 26, 21, 17, 14, 10, 6,
+      4, 2, 0,
+    ];
+    var s_m_upperbody_5 = [
+      200, 119, 109, 99, 89, 79, 69, 59, 49, 39, 35, 30, 26, 21, 18, 15, 12, 9,
+      6, 3, 0,
+    ];
+    var s_m_upperbody_6 = [
+      200, 119, 109, 99, 89, 79, 69, 59, 49, 39, 35, 30, 26, 21, 18, 15, 12, 9,
+      6, 3, 0,
+    ];
+
+    var s_w_upperbody_4 = [
+      200, 89, 82, 74, 67, 59, 51, 44, 36, 28, 25, 23, 20, 17, 14, 11, 8, 5, 3,
+      2, 0,
+    ];
+    var s_w_upperbody_5 = [
+      200, 89, 82, 74, 67, 59, 53, 47, 41, 35, 32, 29, 25, 22, 18, 14, 10, 6, 4,
+      2, 0,
+    ];
+    var s_w_upperbody_6 = [
+      200, 89, 82, 74, 67, 59, 55, 51, 46, 42, 37, 32, 27, 22, 18, 14, 10, 6, 4,
+      2, 0,
+    ];
+
+    let final_score_upperbody;
+
     let rank_Upperbody;
     if (gender === "male") {
       if (SchollYear == 1) {
@@ -833,7 +1101,14 @@ function calculateHealth() {
         } else {
           rank_Upperbody = 1;
         }
-      } else if (SchollYear <= 5) {
+
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_m_upperbody_4[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
+        }
+      } else if (SchollYear == 5) {
         if (Upperbody <= 9) {
           rank_Upperbody = 5;
         } else if (Upperbody <= 21) {
@@ -844,6 +1119,30 @@ function calculateHealth() {
           rank_Upperbody = 2;
         } else {
           rank_Upperbody = 1;
+        }
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_m_upperbody_5[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
+        }
+      } else if (SchollYear == 6) {
+        if (Upperbody <= 9) {
+          rank_Upperbody = 5;
+        } else if (Upperbody <= 21) {
+          rank_Upperbody = 4;
+        } else if (Upperbody <= 39) {
+          rank_Upperbody = 3;
+        } else if (Upperbody <= 79) {
+          rank_Upperbody = 2;
+        } else {
+          rank_Upperbody = 1;
+        }
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_m_upperbody_6[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
         }
       }
     } else {
@@ -895,6 +1194,12 @@ function calculateHealth() {
         } else {
           rank_Upperbody = 1;
         }
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_w_upperbody_4[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
+        }
       } else if (SchollYear == 5) {
         if (Upperbody <= 6) {
           rank_Upperbody = 5;
@@ -907,6 +1212,12 @@ function calculateHealth() {
         } else {
           rank_Upperbody = 1;
         }
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_w_upperbody_5[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
+        }
       } else if (SchollYear == 6) {
         if (Upperbody <= 6) {
           rank_Upperbody = 5;
@@ -918,6 +1229,12 @@ function calculateHealth() {
           rank_Upperbody = 2;
         } else {
           rank_Upperbody = 1;
+        }
+        //  윗몸 말아올리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (Upperbody < s_w_upperbody_6[i]) {
+            final_score_upperbody = score_upperbody[i];
+          }
         }
       }
     }
@@ -938,6 +1255,7 @@ function calculateHealth() {
       lgrip = LL_grip_2;
     }
 
+    console.log(`rgrip ${rgrip}lgrip ${lgrip}`);
     var m_grip_1 = [7.4, 10.4, 13.9, 24.9];
     var m_grip_2 = [8.4, 10.9, 15.9, 29.9];
     var m_grip_3 = [8.9, 11.9, 17.9, 30.9];
@@ -952,6 +1270,39 @@ function calculateHealth() {
 
     var w_grip_5 = [11.9, 15.4, 18.9, 28.9];
     var w_grip_6 = [13.9, 18.9, 26.4, 32.9];
+
+    var score_grip = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_grip_4 = [
+      200, 35.9, 34.7, 33.4, 32.2, 30.9, 27.8, 24.7, 21.5, 18.4, 17.5, 16.7,
+      15.8, 14.9, 14, 13.2, 12.3, 11.4, 10.6, 9.7, 8.9,
+    ];
+    var s_m_grip_5 = [
+      200, 36.9, 35.4, 33.9, 32.4, 30.9, 28.9, 26.9, 24.9, 22.9, 21.4, 19.9,
+      18.4, 16.9, 15.8, 14.7, 13.5, 12.4, 11.6, 10.7, 9.9,
+    ];
+    var s_m_grip_6 = [
+      200, 39.3, 38.2, 37.1, 36, 34.9, 32.8, 30.7, 28.5, 26.4, 24.5, 22.7, 20.8,
+      18.9, 17.9, 16.9, 15.9, 14.9, 13.7, 12.4, 11.2,
+    ];
+
+    var s_w_grip_4 = [
+      200, 33.5, 32.4, 31.2, 30.1, 28.9, 26.2, 23.4, 20.7, 17.9, 16.8, 15.7,
+      14.5, 13.4, 12.7, 11.9, 11.2, 10.4, 9.8, 9.1, 8.5,
+    ];
+    var s_w_grip_5 = [
+      200, 34.9, 33.4, 31.9, 30.4, 28.9, 26.4, 23.9, 21.4, 18.9, 18, 17.2, 16.3,
+      15.4, 14.5, 13.7, 12.8, 11.9, 11.5, 11, 10.6,
+    ];
+    var s_w_grip_6 = [
+      200, 38.9, 37.4, 35.9, 34.4, 32.9, 30.2, 27.4, 24.7, 21.9, 21.2, 20.4,
+      19.7, 18.9, 17.7, 16.4, 15.2, 13.9, 12.6, 11.3, 10,
+    ];
+
+    let final_score_rgrip;
+    let final_score_lgrip;
 
     console.log(`Your m_grip_1 m_grip_1 ${Math.min.apply(null, m_grip_1)}`);
     //오른손
@@ -992,6 +1343,12 @@ function calculateHealth() {
             rank_rgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_m_grip_4[i]) {
+            final_score_rgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (rgrip > m_grip_5[i]) {
@@ -1001,6 +1358,12 @@ function calculateHealth() {
             rank_rgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_m_grip_5[i]) {
+            final_score_rgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (rgrip > m_grip_6[i]) {
@@ -1008,6 +1371,12 @@ function calculateHealth() {
           }
           if (rgrip < Math.min.apply(null, m_grip_6)) {
             rank_rgrip = 5;
+          }
+        }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_m_grip_6[i]) {
+            final_score_rgrip = score_grip[i];
           }
         }
       }
@@ -1048,6 +1417,12 @@ function calculateHealth() {
             rank_rgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_w_grip_4[i]) {
+            final_score_rgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (rgrip > w_grip_5[i]) {
@@ -1057,6 +1432,12 @@ function calculateHealth() {
             rank_rgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_w_grip_5[i]) {
+            final_score_rgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (rgrip > w_grip_6[i]) {
@@ -1064,6 +1445,12 @@ function calculateHealth() {
           }
           if (rgrip < Math.min.apply(null, w_grip_6)) {
             rank_rgrip = 5;
+          }
+        }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (rgrip < s_w_grip_6[i]) {
+            final_score_rgrip = score_grip[i];
           }
         }
       }
@@ -1107,6 +1494,12 @@ function calculateHealth() {
             rank_lgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_m_grip_4[i]) {
+            final_score_lgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (lgrip > m_grip_5[i]) {
@@ -1116,6 +1509,12 @@ function calculateHealth() {
             rank_lgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_m_grip_5[i]) {
+            final_score_lgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (lgrip > m_grip_6[i]) {
@@ -1123,6 +1522,12 @@ function calculateHealth() {
           }
           if (lgrip < Math.min.apply(null, m_grip_6)) {
             rank_lgrip = 5;
+          }
+        }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_m_grip_6[i]) {
+            final_score_lgrip = score_grip[i];
           }
         }
       }
@@ -1163,6 +1568,12 @@ function calculateHealth() {
             rank_lgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_w_grip_4[i]) {
+            final_score_lgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (lgrip > w_grip_5[i]) {
@@ -1172,6 +1583,12 @@ function calculateHealth() {
             rank_lgrip = 5;
           }
         }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_w_grip_5[i]) {
+            final_score_lgrip = score_grip[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (lgrip > w_grip_6[i]) {
@@ -1179,6 +1596,12 @@ function calculateHealth() {
           }
           if (lgrip < Math.min.apply(null, w_grip_6)) {
             rank_lgrip = 5;
+          }
+        }
+        // 악력 점수계산
+        for (i = 0; i < 21; i++) {
+          if (lgrip < s_w_grip_6[i]) {
+            final_score_lgrip = score_grip[i];
           }
         }
       }
@@ -1200,6 +1623,37 @@ function calculateHealth() {
     var w_run50m_5 = [8.9, 9.9, 10.7, 13];
     var w_run50m_6 = [8.9, 9.8, 10.7, 12.9];
 
+    var score_run50m = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_run50m_4 = [
+      5, 8.71, 8.74, 8.76, 8.79, 8.81, 9.04, 9.26, 9.49, 9.71, 9.91, 10.11,
+      10.31, 10.51, 11.19, 11.86, 12.54, 13.21, 14.14, 15.08, 16.01,
+    ];
+    var s_m_run50m_5 = [
+      5, 8.31, 8.36, 8.41, 8.46, 8.51, 8.74, 8.96, 9.19, 9.41, 9.61, 9.81,
+      10.01, 10.21, 10.96, 11.71, 12.46, 13.21, 13.99, 14.78, 15.56,
+    ];
+    var s_m_run50m_6 = [
+      5, 7.78, 7.86, 7.95, 8.03, 8.11, 8.36, 8.61, 8.86, 9.11, 9.34, 9.56, 9.79,
+      10.01, 10.64, 11.26, 11.89, 12.51, 13.51, 14.51, 15.51,
+    ];
+
+    var s_w_run50m_4 = [
+      5, 9.31, 9.34, 9.36, 9.39, 9.41, 9.66, 9.91, 10.16, 10.41, 10.56, 10.71,
+      10.86, 11.01, 11.59, 12.16, 12.74, 13.31, 15.01, 16.72, 18.42,
+    ];
+    var s_w_run50m_5 = [
+      5, 8.74, 8.78, 8.83, 8.87, 8.91, 9.16, 9.41, 9.66, 9.91, 10.11, 10.31,
+      10.51, 10.71, 11.29, 11.86, 12.44, 13.01, 13.98, 14.94, 15.91,
+    ];
+    var s_w_run50m_6 = [
+      5, 8.67, 8.73, 8.79, 8.85, 8.91, 9.14, 9.36, 9.59, 9.81, 10.04, 10.26,
+      10.49, 10.71, 11.26, 11.81, 12.36, 12.91, 13.61, 14.31, 15.01,
+    ];
+
+    let final_score_run50m;
     let rank_run50m;
 
     //50m 달리기
@@ -1240,6 +1694,12 @@ function calculateHealth() {
             rank_run50m = 1;
           }
         }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_m_run50m_4[i]) {
+            final_score_run50m = score_run50m[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (run50m > m_run50m_5[i]) {
@@ -1249,6 +1709,12 @@ function calculateHealth() {
             rank_run50m = 1;
           }
         }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_m_run50m_5[i]) {
+            final_score_run50m = score_run50m[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (run50m > m_run50m_6[i]) {
@@ -1256,6 +1722,12 @@ function calculateHealth() {
           }
           if (run50m < Math.min.apply(null, m_run50m_6)) {
             rank_run50m = 1;
+          }
+        }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_m_run50m_6[i]) {
+            final_score_run50m = score_run50m[i];
           }
         }
       }
@@ -1296,6 +1768,12 @@ function calculateHealth() {
             rank_run50m = 1;
           }
         }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_w_run50m_4[i]) {
+            final_score_run50m = score_run50m[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (run50m > w_run50m_5[i]) {
@@ -1305,6 +1783,12 @@ function calculateHealth() {
             rank_run50m = 1;
           }
         }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_w_run50m_5[i]) {
+            final_score_run50m = score_run50m[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (run50m > w_run50m_6[i]) {
@@ -1312,6 +1796,12 @@ function calculateHealth() {
           }
           if (run50m < Math.min.apply(null, w_run50m_6)) {
             rank_run50m = 1;
+          }
+        }
+        // 50달리기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (run50m >= s_w_run50m_6[i]) {
+            final_score_run50m = score_run50m[i];
           }
         }
       }
@@ -1333,6 +1823,37 @@ function calculateHealth() {
     var w_jumpingmeter_5 = [100, 123, 145, 183];
     var w_jumpingmeter_6 = [100, 127, 145, 183];
 
+    var score_jumpingmeter = [
+      20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
+    ];
+
+    var s_m_jumpingmeter_4 = [
+      300, 179.3, 177, 174.7, 172.3, 170, 164.8, 159.5, 154.3, 149, 144.3,
+      139.5, 134.8, 130, 122.5, 115, 107.5, 100, 99.4, 98.8, 98.2,
+    ];
+    var s_m_jumpingmeter_5 = [
+      300, 187.3, 185.5, 183.7, 181.8, 180, 174.8, 169.5, 164.3, 159, 154.5,
+      150, 145.5, 141, 133.5, 126, 118.5, 111, 109.2, 107.4, 105.6,
+    ];
+    var s_m_jumpingmeter_6 = [
+      300, 204.6, 203.5, 202.3, 201.2, 200, 191.8, 183.5, 175.3, 167, 162.3,
+      157.5, 152.8, 148, 141.5, 135, 128.5, 122, 118.7, 115.3, 112,
+    ];
+
+    var s_w_jumpingmeter_4 = [
+      300, 165.4, 164.3, 163.2, 162.1, 161, 154.5, 148, 141.5, 135, 131, 127,
+      123, 119, 113.5, 108, 102.5, 97, 93.8, 90.6, 87.4,
+    ];
+    var s_w_jumpingmeter_5 = [
+      300, 174.9, 173.7, 172.5, 171.2, 170, 162.3, 154.5, 146.8, 139, 135, 131,
+      127, 123, 117.3, 111.5, 105.8, 100, 96.4, 92.9, 89.3,
+    ];
+    var s_w_jumpingmeter_6 = [
+      300, 177.7, 177, 176.4, 175.7, 175, 167.3, 159.5, 151.8, 144, 139.8,
+      135.5, 131.3, 127, 120.3, 113.5, 106.8, 100, 96.6, 93.3, 89.9,
+    ];
+
+    let final_score_jumpingmeter;
     let rank_jumpingmeter;
 
     if (gender === "male") {
@@ -1373,6 +1894,12 @@ function calculateHealth() {
             rank_jumpingmeter = 5;
           }
         }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_m_jumpingmeter_4[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (jumpingmeter > m_jumpingmeter_5[i]) {
@@ -1382,6 +1909,12 @@ function calculateHealth() {
             rank_jumpingmeter = 5;
           }
         }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_m_jumpingmeter_5[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (jumpingmeter > m_jumpingmeter_6[i]) {
@@ -1389,6 +1922,12 @@ function calculateHealth() {
           }
           if (jumpingmeter < Math.min.apply(null, m_jumpingmeter_6)) {
             rank_jumpingmeter = 5;
+          }
+        }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_m_jumpingmeter_6[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
           }
         }
       }
@@ -1429,6 +1968,12 @@ function calculateHealth() {
             rank_jumpingmeter = 5;
           }
         }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_w_jumpingmeter_4[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (jumpingmeter > w_jumpingmeter_5[i]) {
@@ -1436,6 +1981,12 @@ function calculateHealth() {
           }
           if (jumpingmeter < Math.min.apply(null, w_jumpingmeter_5)) {
             rank_jumpingmeter = 5;
+          }
+        }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_w_jumpingmeter_5[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
           }
         }
       } else if (SchollYear == 6) {
@@ -1447,9 +1998,16 @@ function calculateHealth() {
             rank_jumpingmeter = 5;
           }
         }
+        // 제자리멀리뛰기 점수계산
+        for (i = 0; i < 21; i++) {
+          if (jumpingmeter < s_w_jumpingmeter_6[i]) {
+            final_score_jumpingmeter = score_jumpingmeter[i];
+          }
+        }
       }
     }
 
+    console.log(`final_score_jumpingmeter ${final_score_jumpingmeter}`);
     calories = BMR;
 
     // TODO: Calculate KiloJoules from calories
@@ -1573,7 +2131,38 @@ function calculateHealth() {
     var w_bmi_5 = [14.6, 21.7, 24.4, 34.6];
     var w_bmi_6 = [22.3, 22.3, 25.1, 35.2];
 
+    var score_bmi = [
+      0, 1, 2, 3, 3, 4, 4, 5, 6, 8, 12, 16, 20, 18, 14, 10, 8, 6, 4, 2, 0,
+    ];
+
+    var s_m_bmi_4 = [
+      300, 31.5, 29.9, 27.8, 25.5, 23.2, 22.6, 22, 21.4, 20.7, 19.9, 19.1, 18.3,
+      17.4, 16.6, 15.8, 15, 14.2, 13.4, 12.6, 4.9,
+    ];
+    var s_m_bmi_5 = [
+      300, 31.5, 29.9, 28, 26.3, 24.4, 23.7, 23, 22.3, 21.6, 20.8, 19.9, 19,
+      18.1, 17.2, 16.3, 15.4, 14.5, 13.6, 12.7, 4.9,
+    ];
+    var s_m_bmi_6 = [
+      300, 31.5, 29.9, 28.3, 26.6, 24.9, 24.3, 23.7, 23.1, 22.5, 21.6, 20.6,
+      19.6, 18.6, 17.6, 16.6, 15.7, 14.8, 13.9, 13, 4.9,
+    ];
+
+    var s_w_bmi_4 = [
+      300, 31.5, 29.9, 27.4, 24.7, 22, 21.5, 21, 20.4, 19.8, 19.1, 18.4, 17.6,
+      16.8, 16, 15.3, 14.6, 13.9, 13.2, 12.5, 4.9,
+    ];
+    var s_w_bmi_5 = [
+      300, 31.5, 29.9, 27.6, 25.3, 23, 22.4, 21.8, 21.2, 20.6, 19.8, 19, 18.2,
+      17.4, 16.6, 15.8, 15, 14.2, 13.4, 12.6, 4.9,
+    ];
+    var s_w_bmi_6 = [
+      300, 31.5, 29.9, 27.9, 25.9, 23.9, 23.3, 22.7, 22.1, 21.4, 20.6, 19.8,
+      18.9, 18, 17.1, 16.2, 15.4, 14.6, 13.8, 13, 4.9,
+    ];
+
     let rank_bmi;
+    let final_score_bmi;
 
     if (gender === "male") {
       if (SchollYear == 4) {
@@ -1583,6 +2172,11 @@ function calculateHealth() {
           }
           if (BMI < Math.min.apply(null, m_bmi_4)) {
             rank_bmi = 5;
+          }
+        }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_m_bmi_4[i]) {
+            final_score_bmi = score_bmi[i];
           }
         }
       } else if (SchollYear == 5) {
@@ -1595,6 +2189,11 @@ function calculateHealth() {
             rank_bmi = 5;
           }
         }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_m_bmi_5[i]) {
+            final_score_bmi = score_bmi[i];
+          }
+        }
       } else if (SchollYear == 6) {
         for (i = 0; i < 4; i++) {
           if (BMI > m_bmi_6[i]) {
@@ -1603,6 +2202,11 @@ function calculateHealth() {
 
           if (BMI < Math.min.apply(null, m_bmi_6)) {
             rank_bmi = 5;
+          }
+        }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_m_bmi_6[i]) {
+            final_score_bmi = score_bmi[i];
           }
         }
       }
@@ -1616,6 +2220,11 @@ function calculateHealth() {
             rank_bmi = 5;
           }
         }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_w_bmi_4[i]) {
+            final_score_bmi = score_bmi[i];
+          }
+        }
       } else if (SchollYear == 5) {
         for (i = 0; i < 4; i++) {
           if (BMI > w_bmi_5[i]) {
@@ -1624,6 +2233,11 @@ function calculateHealth() {
 
           if (BMI < Math.min.apply(null, w_bmi_5)) {
             rank_bmi = 5;
+          }
+        }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_w_bmi_5[i]) {
+            final_score_bmi = score_bmi[i];
           }
         }
       } else if (SchollYear == 6) {
@@ -1636,8 +2250,15 @@ function calculateHealth() {
             rank_bmi = 5;
           }
         }
+        for (i = 0; i < 21; i++) {
+          if (BMI < s_w_bmi_6[i]) {
+            final_score_bmi = score_bmi[i];
+          }
+        }
       }
     }
+
+    console.log(`final_score_bmi ${final_score_bmi}`);
     let BMI_detail;
 
     if (rank_bmi == 5) {
@@ -1663,8 +2284,59 @@ function calculateHealth() {
     }
 
     //신체의 능력점수
-    let score;
+    let score = 0;
 
+    if (Check_Alacrity.value == 1) {
+      score += final_score_run50m;
+
+      console.log(`final_score_run50m ${final_score_run50m}`);
+    } else if (Check_Alacrity.value == 2) {
+      score += final_score_jumpingmeter;
+
+      console.log(`final_score_jumpingmeter ${final_score_jumpingmeter}`);
+    }
+
+    console.log(`Check_Alacrity ${score}`);
+
+    if (Check_Endurance.value == 1) {
+      score += final_score_roundrun;
+    } else if (Check_Endurance.value == 2) {
+      score += final_score_longrun;
+    } else if (Check_Endurance.value == 3) {
+      score += 20;
+    }
+    console.log(`Check_Endurance ${score}`);
+
+    if (Check_Flexibility.value == 1) {
+      score += final_score_Rbending * 0.5;
+      score += final_score_Lbending * 0.5;
+
+      console.log(`final_score_Rbending ${final_score_Rbending}`);
+      console.log(`final_score_Lbending ${final_score_Lbending}`);
+    } else if (Check_Flexibility.value == 2) {
+      score += final_score_flexibility;
+    }
+
+    console.log(`Check_Flexibility ${score}`);
+
+    if (Check_Muscular.value == 1) {
+      score += 20;
+    } else if (Check_Muscular.value == 2) {
+      score += final_score_upperbody;
+
+      console.log(`final_score_upperbody ${final_score_upperbody}`);
+    } else if (Check_Muscular.value == 3) {
+      score += final_score_lgrip * 0.5;
+      score += final_score_rgrip * 0.5;
+      console.log(`final_score_lgrip ${final_score_lgrip}`);
+      console.log(`final_score_rgrip ${final_score_rgrip}`);
+    }
+    console.log(`Check_Muscular ${score}`);
+
+    score += final_score_bmi;
+    console.log(`final_score_bmi ${final_score_bmi}`);
+    console.log(`final_score ${score}`);
+    /*
     score =
       (6 - rank_bmi) * 4 +
       (6 - rank_longrun) * 4 +
@@ -1673,7 +2345,7 @@ function calculateHealth() {
       (6 - rank_rgrip) * 2 +
       (6 - rank_lgrip) * 2 +
       (6 - rank_run50m) * 4;
-
+*/
     // 신체의 능력등급
     let rank;
 
@@ -1698,7 +2370,7 @@ function calculateHealth() {
     let final_step;
     let final_pushup;
 
-    if (SchollYear <= 4) {
+    if (SchollYear < 4) {
       final_longrun = ``;
       final_rbend = ``;
       final_lbend = ``;
@@ -1762,7 +2434,7 @@ function calculateHealth() {
     // 유연성 측정 종목에 따른 평가 안내
     let final_rank_flexibiliy;
 
-    if (Check_Flexibility.value == 1) {
+    if (Check_Flexibility.value == 2) {
       final_rank_flexibiliy = `
       <h5 class="d-inline-block">종합유연성 기준표 : </h5>
       <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
@@ -1771,7 +2443,7 @@ function calculateHealth() {
       `;
       final_rbend = ``;
       final_lbend = ``;
-    } else if (Check_Flexibility.value == 2) {
+    } else if (Check_Flexibility.value == 1) {
       final_rbend = `       
       <h5 class="d-inline-block">오른쪽 앉아 윗몸앞으로 굽히기 : </h5>
       <h5 class="d-inline-block font-weight-semi bold position-relative float-right"
